@@ -4,9 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>ORVE - Lotes</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="layout.css" />
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
         crossorigin="anonymous">
@@ -19,13 +18,13 @@
             <h1>Compra en línea Antaria</h1>
         </div>
     </div>
-    <div class="row-fluid-wrapper ob-container">
+    <div class="ob-container">
         <h3 class="orve-title">Selecciona tus lotes</h3>
-        <div class="row-fluid">
-            <div class="span8">
+        <div class="row">
+            <div class="col-lg-7 col-md-6">
                 <img src="placeholder.jpg" alt="">
             </div>
-            <div class="span4">
+            <div class="col-lg-5 col-md-6">
                 <label>Lote*</label>
                 <br>
                 <div>
@@ -38,31 +37,35 @@
                         <option value="A5" data-show=".A5">A5</option>
                     </select>
                 </div>
-                <div class="row-fluid-wrapper">
+                <div class="">
                     <div class="lot-info">
-                        <div class="hide none row-fluid">
-                            <div class="hide none span6">
+                        <div class="hide none row">
+                            <div class="hide none col-6">
                                 <label class="none">M2</label>
                                 <p class="none">—</p>
                             </div>
-                            <div class="hide none span6">
+                            <div class="hide none col-6">
                                 <label class="none">Medidas</label>
                                 <p class="none">—</p>
                             </div>
                         </div>
-                        <div class="hide none row-fluid">
-                            <div class="none span6">
+                        <div class="hide none row">
+                            <div class="none col-6">
                                 <label class="hide none">Precio del lote</label>
                                 <p class="none">—</p>
                             </div>
-                            <div class="none span6">
+                            <div class="none col-6">
                                 <label class="hide none">Valor escrituras</label>
                                 <p class="none">—</p>
                             </div>
                         </div>
-                        <div class="lot-total hide none">
-                            <label class="none">Precio final</label>
-                            <p class="none">—</p>
+                        <div class="hide none row">
+                            <div class="none lot-total col-6">
+                                <label class="hide none">Precio final</label>
+                                <p class="none">—</p>
+                            </div>
+                            <div class="none col-6">
+                            </div>
                         </div>
                         <div class="hide none">
                             <button type="button" class="none" disabled>Agregar al carrito</button>
@@ -70,156 +73,179 @@
                     </div>
 
                     <div class="lot-info">
-                        <div class="hide A1 row-fluid">
-                            <div class="span6">
-                                <label>M2</label>
-                                <p>450</p>
-                            </div>
-                            <div class="hide A1 span6">
-                                <label>Medidas</label>
-                                <p>15 x 30</p>
-                            </div>
-                        </div>
-                        <div class="hide A1 row-fluid">
-                            <div class="A1 span6">
-                                <label class="hide A1">Precio del lote</label>
-                                <p class="A1">$35000.00</p>
-                            </div>
-                            <div class="span6">
-                                <label>Valor escrituras</label>
-                                <p>$9000.00</p>
-                            </div>
-                        </div>
-                        <div class="lot-total hide A1">
-                            <label>Precio final</label>
-                            <p>$44000.00</p>
-                        </div>
                         <div class="hide A1">
-                            <button type="button" disabled>Agregar al carrito</button>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label>M2</label>
+                                    <p>450</p>
+                                </div>
+                                <div class="col-6">
+                                    <label>Medidas</label>
+                                    <p>15 x 30</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label>Precio del lote</label>
+                                    <p class="">$35000.00</p>
+                                </div>
+                                <div class="col-6">
+                                    <label>Valor escrituras</label>
+                                    <p>$9000.00</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="lot-total col-6">
+                                    <label>Precio final</label>
+                                    <p>$44000.00</p>
+                                </div>
+                                <div class="col-6"></div>
+                            </div>
+                            <div class="">
+                                <button type="button" disabled>Agregar al carrito</button>
+                            </div>
                         </div>
                     </div>
 
                     <div class="lot-info">
-                        <div class="hide A2 row-fluid">
-                            <div class="span6">
-                                <label>M2</label>
-                                <p>810</p>
-                            </div>
-                            <div class="span6">
-                                <label>Medidas</label>
-                                <p>18 x 45</p>
-                            </div>
-                        </div>
-                        <div class="hide A2 row-fluid">
-                            <div class="span6">
-                                <label>Precio del lote</label>
-                                <p>$40000.00</p>
-                            </div>
-                            <div class="span6">
-                                <label>Valor escrituras</label>
-                                <p>$8750.00</p>
-                            </div>
-                        </div>
-                        <div class="lot-total hide A2">
-                            <label>Precio final</label>
-                            <p>$48750.00</p>
-                        </div>
                         <div class="hide A2">
-                            <button type="button" class="add-to-cart" data-width="18" data-long="45" data-price="40000" data-deed="8750" data-first="7500"
-                                data-disc="0.2" data-lot="A2">Agregar al carrito</button>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label>M2</label>
+                                    <p>810</p>
+                                </div>
+                                <div class="col-6">
+                                    <label>Medidas</label>
+                                    <p>18 x 45</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label>Precio del lote</label>
+                                    <p>$40000.00</p>
+                                </div>
+                                <div class="col-6">
+                                    <label>Valor escrituras</label>
+                                    <p>$8750.00</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="lot-total col-6">
+                                    <label>Precio final</label>
+                                    <p>$48750.00</p>
+                                </div>
+                                <div class="col-6"></div>
+                            </div>
+                            <div>
+                                <button type="button" class="add-to-cart" data-width="18" data-long="45" data-price="40000"  data-deed="50" data-mainDeed="8750" data-altDeed="750"
+                                    data-first="7500" data-disc="0.2" data-lot="A2">Agregar al carrito</button>
+                            </div>
                         </div>
                     </div>
-
                     <div class="lot-info">
-                        <div class="hide A3 row-fluid">
-                            <div class="span6">
-                                <label>M2</label>
-                                <p>350</p>
-                            </div>
-                            <div class="span6">
-                                <label>Medidas</label>
-                                <p>10 x 35</p>
-                            </div>
-                        </div>
-                        <div class="hide A3 row-fluid">
-                            <div class="span6">
-                                <label>Precio del lote</label>
-                                <p>$25000.00</p>
-                            </div>
-                            <div class="span6">
-                                <label class="hide A3">Valor escrituras</label>
-                                <p>$9000.00</p>
-                            </div>
-                        </div>
-                        <div class="lot-total hide A3">
-                            <label>Precio final</label>
-                            <p>$34000.00</p>
-                        </div>
                         <div class="hide A3">
-                            <button type="button" class="add-to-cart" data-width="10" data-long="35" data-price="25000" data-deed="9000" data-first="7500"
-                                data-disc="0.2" data-lot="A3">Agregar al carrito</button>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label>M2</label>
+                                    <p>350</p>
+                                </div>
+                                <div class="col-6">
+                                    <label>Medidas</label>
+                                    <p>10 x 35</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label>Precio del lote</label>
+                                    <p>$25000.00</p>
+                                </div>
+                                <div class="col-6">
+                                    <label>Valor escrituras</label>
+                                    <p>$9000.00</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="lot-total col-6">
+                                    <label>Precio final</label>
+                                    <p>$34000.00</p>
+                                </div>
+                                <div class="col-6"></div>
+                            </div>
+                            <div>
+                                <button type="button" class="add-to-cart" data-width="10" data-long="35" data-price="25000"  data-deed="0" data-mainDeed="9000" data-altDeed="850"
+                                    data-first="7500" data-disc="0.2" data-lot="A3">Agregar al carrito</button>
+                            </div>
                         </div>
                     </div>
-
                     <div class="lot-info">
-                        <div class="hide A4 row-fluid">
-                            <div class="span6">
-                                <label>M2</label>
-                                <p>480</p>
-                            </div>
-                            <div class="span6">
-                                <label>Medidas</label>
-                                <p>12 x 40</p>
-                            </div>
-                        </div>
-                        <div class="hide A4 row-fluid">
-                            <div class="span6">
-                                <label>Precio del lote</label>
-                                <p>$30000.00</p>
-                            </div>
-                            <div class="span6">
-                                <label class="hide A4">Valor escrituras</label>
-                                <p>$8750.00</p>
-                            </div>
-                        </div>
-                        <div class="lot-total hide A4">
-                            <label>Precio final</label>
-                            <p>$38750.00</p>
-                        </div>
                         <div class="hide A4">
-                            <button type="button" class="add-to-cart" data-width="10" data-long="35" data-price="30000" data-deed="8750" data-first="7500"
-                                data-disc="0.2" data-lot="A4">Agregar al carrito</button>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label>M2</label>
+                                    <p>480</p>
+                                </div>
+                                <div class="col-6">
+                                    <label>Medidas</label>
+                                    <p>12 x 40</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label>Precio del lote</label>
+                                    <p>$30000.00</p>
+                                </div>
+                                <div class="col-6">
+                                    <label class="hide A4">Valor escrituras</label>
+                                    <p>$8750.00</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="lot-total col-6">
+                                    <label>Precio final</label>
+                                    <p>$38750.00</p>
+                                </div>
+                                <div class="col-6"></div>
+                            </div>
+                            <div>
+                                <button type="button" class="add-to-cart" data-width="10" data-long="35" data-price="30000"  data-deed="0" data-mainDeed="8750" data-altDeed="750"
+                                    data-first="7500" data-disc="0.2" data-lot="A4">Agregar al carrito</button>
+                            </div>
                         </div>
                     </div>
-
                     <div class="lot-info">
-                        <div class="hide A5 row-fluid">
-                            <div class="span6">
-                                <label>M2</label>
-                                <p>220</p>
-                            </div>
-                            <div class="span6">
-                                <label>Medidas</label>
-                                <p>11 x 20</p>
-                            </div>
-                        </div>
-                        <div class="hide A5 row-fluid">
-                            <div class="span6">
-                                <label>Precio del lote</label>
-                                <p>$20000.00</p>
-                            </div>
-                            <div class="span6">
-                                <label class="hide A5">Valor escrituras</label>
-                                <p>$9000.00</p>
-                            </div>
-                        </div>
-                        <div class="lot-total hide A5">
-                            <label>Precio final</label>
-                            <p>$29000.00</p>
-                        </div>
                         <div class="hide A5">
-                            <button type="button" class="add-to-cart" data-width="11" data-long="20" data-price="20000" data-deed="9000" data-first="7500"
-                                data-disc="0.2" data-lot="A5">Agregar al carrito</button>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label>M2</label>
+                                    <p>220</p>
+                                </div>
+                                <div class="col-6">
+                                    <label>Medidas</label>
+                                    <p>11 x 20</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label>Precio del lote</label>
+                                    <p>$20000.00</p>
+                                </div>
+                                <div class="col-6">
+                                    <label class="hide A5">Valor escrituras</label>
+                                    <p>$9000.00</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="lot-total col-6">
+                                    <label>Precio final</label>
+                                    <p>$29000.00</p>
+                                </div>
+                                <div class="col-6"></div>
+                            </div>
+                            <div>
+                                <button type="button" class="add-to-cart" data-width="11" data-long="20" data-price="20000"  data-deed="0" data-mainDeed="9000" data-altDeed="750"
+                                    data-first="7500" data-disc="0.2" data-lot="A5">Agregar al carrito</button>
+                            </div>
                         </div>
                     </div>
                     <div class="lot-link">
@@ -230,57 +256,57 @@
         </div>
     </div>
     <div class="ob-container">
-        <div id="show-cart">
+        <div class="table-responsive" id="show-cart">
             <!-- Carrito de compras -->
         </div>
     </div>
-    <div class="row-fluid-wrapper light-background">
+    <div class="light-background">
         <div class="ob-container">
-            <div class="row-fluid">
+            <div>
                 <h2 class="orve-title">Seleccionar plan de pago</h2>
             </div>
-            <div class="row-fluid">
-                <div class="span12">
-                    <table id="payment-table">
+            <div>
+                <div class="table-responsive">
+                    <table class="table" id="payment-table">
                         <tbody>
                             <tr>
-                                <th></th>
-                                <th>Financiamiento Orve
+                                <th scope="col"></th>
+                                <th scope="col">Financiamiento Orve
                                     <small>1</small>
                                 </th>
-                                <th>Saldo 20 días Orve
+                                <th scope="col">Saldo 20 días Orve
                                     <small>2</small>
                                 </th>
-                                <th>Meses sin intereses
+                                <th scope="col">Meses sin intereses
                                     <small>3</small>
                                 </th>
-                                <th>1 solo pago
+                                <th scope="col">1 solo pago
                                     <small>4</small>
                                 </th>
                             </tr>
                             <tr class="table-border">
-                                <td class="text-left">Precio de lista</td>
+                                <td scope="row" class="text-left">Precio de lista</td>
                                 <td id="list-total-f">—</td>
                                 <td id="list-total-20">—</td>
                                 <td id="list-total-msi">—</td>
                                 <td id="list-total-one">—</td>
                             </tr>
                             <tr>
-                                <td class="text-left">Cuota de apertura</td>
+                                <td scope="row" class="text-left">Cuota de apertura</td>
                                 <td id="op-fee-f">—</td>
                                 <td id="op-fee-20">—</td>
                                 <td id="op-fee-msi">—</td>
                                 <td id="op-fee-one">—</td>
                             </tr>
                             <tr>
-                                <td class="text-left">Costo de escrituras</td>
+                                <td scope="row" class="text-left">Costo de escrituras</td>
                                 <td id="deed-f">—</td>
                                 <td id="deed-20">—</td>
                                 <td id="deed-msi">—</td>
                                 <td id="deed-one">—</td>
                             </tr>
                             <tr>
-                                <td class="text-left">
+                                <td scope="row" class="text-left">
                                     <label for="total">Total a pagar</label>
                                 </td>
                                 <td class="bold" id="total-f">—</td>
@@ -294,51 +320,50 @@
             </div>
         </div>
     </div>
-
     <div class="light-background">
         <div class="ob-container">
             <div>
                 <h2 class="orve-subtitle">Plazos y pagos mensuales</h2>
             </div>
             <div>
-                <div>
-                    <table>
+                <div class="table-responsive">
+                    <table class="table">
 
                         <tbody>
                             <tr>
-                                <td class="text-left">Primer pago</td>
+                                <td scope="row" class="text-left">Primer pago</td>
                                 <td id="first-pay-f">—</td>
                                 <td id="first-pay-20">—</td>
                                 <td id="first-pay-msi">—</td>
                                 <td id="first-pay-one">—</td>
                             </tr>
                             <tr>
-                                <td class="text-left">12 MSI</td>
+                                <td scope="row" class="text-left">12 MSI</td>
                                 <td id="msi12-f">—</td>
                                 <td id="msi12-20">—</td>
                                 <td id="msi12-msi">—</td>
                                 <td id="msi12-one">—</td>
                             </tr>
                             <tr>
-                                <td class="text-left">24 MSI</td>
+                                <td scope="row" class="text-left">24 MSI</td>
                                 <td id="msi24-f">—</td>
                                 <td id="msi24-20">—</td>
                                 <td id="msi24-msi">—</td>
                                 <td id="msi24-one">—</td>
                             </tr>
                             <tr class="no-border">
-                                <td></td>
+                                <td scope="row"></td>
                                 <td>
-                                    <button type="button" class="checkout-btn" id="pay-btn-f" data-deal="Financiamiento Orve" disabled>Pagar anticipo $7,500.00</button>
+                                    <button type="button" class="checkout-btn" id="pay-btn-f" data-deal="Financiamiento Orve" disabled>Financiamiento</button>
                                 </td>
                                 <td>
-                                    <button type="button" class="checkout-btn" id="pay-btn-20" data-deal="Saldo 20 dias Orve" disabled>Pagar anticipo $7,000.00</button>
+                                    <button type="button" class="checkout-btn" id="pay-btn-20" data-deal="Saldo 20 dias Orve" disabled>Saldo 20 dias</button>
                                 </td>
                                 <td>
-                                    <button type="button" class="checkout-btn" id="pay-btn-msi" data-deal="Meses sin intereses" disabled>Pagar MSI</button>
+                                    <button type="button" class="checkout-btn" id="pay-btn-msi" data-deal="Meses sin intereses" disabled>MSI</button>
                                 </td>
                                 <td>
-                                    <button type="button" class="checkout-btn" id="pay-btn-one" data-deal="1 solo pago" disabled>Pagar</button>
+                                    <button type="button" class="checkout-btn" id="pay-btn-one" data-deal="1 solo pago" disabled>1 Pago</button>
                                 </td>
                             </tr>
                         </tbody>

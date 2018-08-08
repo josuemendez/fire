@@ -25,7 +25,6 @@ body {
     letter-spacing: normal;
     text-align: center;
     color: #03b42e;
-    /*color: var(--kelly-green);*/
 }
 
 .orve-subtitle {
@@ -258,7 +257,7 @@ button:hover {
     line-height: normal;
     letter-spacing: normal;
     text-align: right;
-    color: #fc465c;
+    color: #fc465c !important;
 }
 
 .rules {
