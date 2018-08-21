@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <title>Get JASON Test</title>
+</head>
+
+<body>
+
+    <h1>Get JSON Test</h1>
+
+
+
+    <div class="demo"></div>
+
+<ul id="authors">
+    
+</ul>
+
+
+
+    <script>
+        /*https://www.youtube.com/watch?v=BJ0tyZg2zek*/
+        var demo = $('div.demo');
+        $('input#get').ready(function () {
+            $.ajax({
+                type: 'GET',
+                url: 'https://api.hubapi.com/hubdb/api/v1/tables/697778/rows?portalId=2795955',
+                dataType: 'json',
+                success: function (data) {
+                    $.each(data, function (index, item) {
+                        $.each(item, function (key, value) {
+                            demo.append(key + ': ' + value + '</br>')
+                        })
+                    })
+                }
+            })
+        })
+
+        function createNode(element) {
+            return document.createElement(element);
+        }
+
+        function append(parent, el) {
+            return parent.appendChild(el);
+        }
+
+        const ul = document.getElementById("authors");
+        const url = 'https://randomuser.me/api/?results=10';
+
+        fetch(url)
+            .then((resp) => resp.json())
+            .then(function (data) {
+                let authors = data.results;
+
+                return authors.map(function (author) {
+                    let li = createNode('li'),
+                        img = createNode('img'),
+                        span = createNode('span');
+
+                    img.src = author.pucture.medium;
+
+                    span.innerHTML = `${author.name.first} ${author.name.last}`;
+
+                    append(li, img);
+                    append(li, span);
+                    append(ul, li);
+                })
+            })
+
+            .catch(function (error) {
+                console.log(JSON.stringify(error));
+            })
+
+        /*function Get('https://api.hubapi.com/hubdb/api/v1/tables/697778/rows?portalId=2795955') {
+            var Httpreq = new XMLHttpRequest(); // a new request 
+            Httpreq.open("GET", 'https://api.hubapi.com/hubdb/api/v1/tables/697778/rows?portalId=2795955', false);
+            Httpreq.send(null);
+            return Httpreq.responseText;
+        }*/
+
+
+
+        /*var getjcontent = 'https://api.hubapi.com/hubdb/api/v1/tables/697778/rows?portalId=2795955';
+        var jcontent = JSON.parse(getjcontent);
+        console.log(jcontent.objects[1].values[3].name);
+
+        var output = document.getElementById('demo');
+        output.innerHTML = jcontent.total + ' ' + jcontent.limit + ' ' + jcontent.objects[1].values[3].name + ' ' +
+            jcontent.objects[1].values[2];*/
+    </script>
+
+
+
+</body>
+
+</html>
