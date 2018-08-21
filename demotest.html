@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Demo Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+    <div id="root">
+
+
+    </div>
+</body>
+<script>
+    function displayProds() {
+        var prods = loadProds();
+
+        $(document).ready(function () {
+            for (var i in prods) {
+                output += "<h3>" + prods[i] + "</h3>";
+
+            }
+
+        });
+
+    };
+
+    loadProds = function () {
+        // Create a request variable and assign a new XMLHttpRequest object to it.
+        var request = new XMLHttpRequest();
+        // Open a new connection, using the GET request on the URL endpoint
+        request.open('GET', 'https://api.hubapi.com/hubdb/api/v1/tables/697778/rows?portalId=2795955', true);
+        request.onload = function () {
+            // Begin accessing JSON data here
+            var data = JSON.parse(this.response);
+            if (request.status >= 200 && request.status < 400) {
+
+                data.objects.forEach(lot => {
+                    // Log each movie's title
+                    console.log(lot.values[2]);
+                    console.log(lot.values[3].name);
+                    console.log(lot.values[7]);
+                    console.log(lot.values[9]);
+                    console.log(lot.values[10]);
+                    console.log(lot.values[11]);
+                    console.log(lot.values[12]);
+                    console.log(lot.values[15]);
+                    console.log(lot.values[13]);
+                    console.log(lot.values[14]);
+                });
+            } else {
+                console.log('error connecting to HubDB API');
+            }
+        }
+
+        // Send request
+ return data;
+    }
+
+
+
+    // Create a request variable and assign a new XMLHttpRequest object to it.
+    var request = new XMLHttpRequest();
+    // Open a new connection, using the GET request on the URL endpoint
+    request.open('GET', 'https://api.hubapi.com/hubdb/api/v1/tables/697778/rows?portalId=2795955', true);
+    request.onload = function () {
+        // Begin accessing JSON data here
+        var data = JSON.parse(this.response);
+        if (request.status >= 200 && request.status < 400) {
+
+            data.objects.forEach(lot => {
+                // Log each movie's title
+                console.log(lot.values[2]);
+                console.log(lot.values[3].name);
+                console.log(lot.values[7]);
+                console.log(lot.values[9]);
+                console.log(lot.values[10]);
+                console.log(lot.values[11]);
+                console.log(lot.values[12]);
+                console.log(lot.values[15]);
+                console.log(lot.values[13]);
+                console.log(lot.values[14]);
+            });
+        } else {
+            console.log('error connecting to HubDB API');
+        }
+    }
+
+    // Send request
+    request.send();
+
+
+   displayProds();
+</script>
+
+</html>
