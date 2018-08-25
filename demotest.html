@@ -35,10 +35,10 @@
     request.open('GET', 'https://api.hubapi.com/hubdb/api/v1/tables/697778/rows?portalId=2795955', true);
     request.onload = function () {
         // Begin accessing JSON data here
-        var data = JSON.parse(this.response);
+        var datas = JSON.parse(this.response); //cambie la palabra data a datas
         if (request.status >= 200 && request.status < 400) {
 
-            data.objects.forEach(lot => {
+            datas.objects.forEach(lot => { //datas
                 // Log each movie's title
                 console.log(lot.values[2]);
                 console.log(lot.values[3].name);
@@ -61,6 +61,25 @@
 
 
    displayProds();
+
+
 </script>
+
+<script type="text/javascript">
+
+function crearSelect(){ 
+var lista=document.getElementById("ulListado"); 
+array.forEach(function(datas,index){
+var datas= document.createElement("li");    
+var contenido = document.createTextNode(datas.lot+' '+datas.status+" "+datas.first_pay+" "+datas.ancho+" "+datas.largo+" "+datas.m2);
+lista.appendChild(linew);
+linew.appendChild(contenido);
+
+})
+}
+crearSelect();
+</script>
+
+<div id="ulListado"></div>
 
 </html>
