@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Demo Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="root">
+
+
+    </div>
+
+    <div>
+        <p class="greeting-id">The ID is </p>
+        <p class="greeting-content">The content is </p>
+    </div>
+    <div>
+        <p class="greeting-id1">The ID is </p>
+        <p class="greeting-content1">The content is </p>
+    </div>
+
+
+</body>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: "http://rest-service.guides.spring.io/greeting"
+        }).then(function (data) {
+            var test1 = data.id;
+            $('.greeting-id').append(test1);
+            $('.greeting-content').append(data.content);
+        });
+    });
+
+
+    $(document).ready(function () {
+        $.ajax({
+            url: "https://api.hubapi.com/hubdb/api/v1/tables/697778/rows?portalId=2795955"
+        }).then(function (data) {
+            while (data) {
+                var test = data.object.values[2];
+                $('.greeting-id1').append(test);
+                $('.greeting-content1').append(test);
+            };
+        });
+    });
+
+
+
+    //consumo de API con JavaScript
+    function displayProds() {
+        var prods = loadProds();
+
+        $(document).ready(function () {
+            for (var i in prods) {
+                output += "<h3>" + prods[i] + "</h3>";
+
+            }
+
+        });
+
+    };
+
+    // Create a request variable and assign a new XMLHttpRequest object to it.
+    var request = new XMLHttpRequest();
+    // Open a new connection, using the GET request on the URL endpoint
+    request.open('GET', 'https://api.hubapi.com/hubdb/api/v1/tables/697778/rows?portalId=2795955', true);
+    request.onload = function () {
+        // Begin accessing JSON data here
+        var data = JSON.parse(this.response);
+        if (request.status >= 200 && request.status < 400) {
+
+            data.objects.forEach(lot => {
+                // Log each movie's title
+                console.log('Lote: ' + lot.values[2]);
+                console.log('Lote: ' + lot.values[3].name);
+                console.log('Ancho: ' + lot.values[9]);
+                console.log('Largo: ' + lot.values[10]);
+                console.log('Primer Pago: ' + lot.values[14]);
+                console.log('Main PRice M2: ' + lot.values[17]);
+                console.log('Main Price: ' + lot.values[18]);
+                console.log('List Proce M2: ' + lot.values[19]);
+                console.log('List Proce: ' + lot.values[20]);
+                console.log('Main Deed: ' + lot.values[21]);
+                console.log('Main Deed alt: ' + lot.values[22]);
+                console.log('List Deed: ' + lot.values[23]);
+                console.log('List alt Deed: ' + lot.values[24]);
+            });
+        } else {
+            console.log('error connecting to HubDB API');
+        }
+    }
+
+    // Send request
+    request.send();
+
+
+    displayProds();
+</script>
+
+</html>
