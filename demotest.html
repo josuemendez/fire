@@ -15,42 +15,12 @@
 
     </div>
 
-    <div>
-        <p class="greeting-id">The ID is </p>
-        <p class="greeting-content">The content is </p>
-    </div>
-    <div>
-        <p class="greeting-id1">The ID is </p>
-        <p class="greeting-content1">The content is </p>
-    </div>
+   
 
 
 </body>
 <script>
-    $(document).ready(function () {
-        $.ajax({
-            url: "http://rest-service.guides.spring.io/greeting"
-        }).then(function (data) {
-            var test1 = data.id;
-            $('.greeting-id').append(test1);
-            $('.greeting-content').append(data.content);
-        });
-    });
-
-
-    $(document).ready(function () {
-        $.ajax({
-            url: "https://api.hubapi.com/hubdb/api/v1/tables/697778/rows?portalId=2795955"
-        }).then(function (data) {
-            while (data) {
-                var test = data.object.values[2];
-                $('.greeting-id1').append(test);
-                $('.greeting-content1').append(test);
-            };
-        });
-    });
-
-
+   
 
     //consumo de API con JavaScript
     function displayProds() {
@@ -78,7 +48,7 @@
             datas.objects.forEach(lot => { //datas
                 // Log each movie's title
                 console.log('Lote: ' + lot.values[2]);
-                console.log('Lote: ' + lot.values[3].name);
+                console.log('Status: ' + lot.values[3].name);
                 console.log('Ancho: ' + lot.values[9]);
                 console.log('Largo: ' + lot.values[10]);
                 console.log('Primer Pago: ' + lot.values[14]);
@@ -98,9 +68,6 @@
 
     // Send request
     request.send();
-
-
-    displayProds();
 </script>
 
 <script type="text/javascript">
