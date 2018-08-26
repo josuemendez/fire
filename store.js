@@ -9,14 +9,19 @@ $(".add-to-cart").click(function (event) {
     var lot = $(this).attr("data-lot");
     var width = Number($(this).attr("data-width"));
     var long = Number($(this).attr("data-long"));
-    var price = Number($(this).attr("data-price"));
-    var deed = Number($(this).attr("data-deed"));
-    var mainDeed = Number($(this).attr("data-mainDeed"));
-    var altDeed = Number($(this).attr("data-altDeed"));
     var first_pay = Number($(this).attr("data-first"));
-    var discount = Number($(this).attr("data-disc"));
+    var m2 = Number($(this).attr("data-m2"));
+    var main_price_m2 = Number($(this).attr("data-mainPriceM2"));
+    var main_price = Number($(this).attr("data-mainPrice"));
+    var list_price_m2 = Number($(this).attr("data-listPriceM2"));
+    var list_price = Number($(this).attr("data-listPrice"));
+    var main_deed = Number($(this).attr("data-mainDeed"));
+    var main_deed_alt = Number($(this).attr("data-mainDeedAlt"));
+    var list_deed = Number($(this).attr("data-listDeed"));
+    var list_deed_alt = Number($(this).attr("data-listDeedAlt"));
 
-    shoppingCart.addItemToCart(lot, price, deed, mainDeed, altDeed, width, long, first_pay, discount, 1);
+
+    shoppingCart.addItemToCart(lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, 1);
     displayCart();
     loadPayTableF();
     loadPayTable20();
@@ -43,11 +48,11 @@ function displayCart() {
             for (var i in cartArray) {
                 output += "<tr><td scope=" + 'row' + "class=" + 'text-left' + ">" +
                     cartArray[i].lot +
-                    "</td><td>" + (cartArray[i].width * cartArray[i].long) +
+                    "</td><td>" + cartArray[i].m2 +
                     " m2 (" + cartArray[i].width + " x " + cartArray[i].long +
-                    ")<td>$" + cartArray[i].price +
-                    "</td><td>$" + cartArray[i].deed +
-                    " </td><td>$" + (cartArray[i].price + cartArray[i].deed) +
+                    ")<td>$" + cartArray[i].list_price +
+                    "</td><td>$" + cartArray[i].list_deed +
+                    " </td><td>$" + (cartArray[i].list_price + cartArray[i].list_deed) +
                     " </td><td><a class='delete-item danger' data-name='" + cartArray[i].lot + "'>Eliminar</a></td></tr>";
 
             }
@@ -276,20 +281,24 @@ var shoppingCart = {};
 shoppingCart.cart = [];
 shoppingCart.holdDeal = [];
 
-shoppingCart.Item = function (lot, price, deed, mainDeed, altDeed, width, long, first_pay, discount, count) {
+shoppingCart.Item = function (lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price,  main_deed, main_deed_alt, list_deed, list_deed_alt, count) {   
     this.lot = lot
-    this.price = price
-    this.deed = deed
-    this.mainDeed = mainDeed
-    this.altDeed = altDeed
     this.width = width
     this.long = long
+    this.m2 = m2
     this.first_pay = first_pay
-    this.discount = discount
+    this.main_price_m2 = main_price_m2
+    this.main_price = main_price
+    this.list_price_m2 = list_price_m2
+    this.list_price = list_price
+    this.main_deed = main_deed
+    this.main_deed_alt = main_deed_alt
+    this.list_deed = list_deed
+    this.list_deed_alt = list_deed_alt
     this.count = count
 };
 
-shoppingCart.addItemToCart = function (lot, price, deed, mainDeed, altDeed, width, long, first_pay, discount, count) {
+shoppingCart.addItemToCart = function (lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, count) {
     for (var i in this.cart) {
         if (this.cart[i].lot === lot) {
             alert("Este lote ya está en su carrito!");
@@ -307,7 +316,7 @@ shoppingCart.addItemToCart = function (lot, price, deed, mainDeed, altDeed, widt
             deed = mainDeed;
         }
     }
-    var item = new this.Item(lot, price, deed, mainDeed, altDeed, width, long, first_pay, discount, count);
+    var item = new this.Item(lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, count);
     this.cart.push(item);
     this.saveCart();
 };
@@ -473,7 +482,7 @@ shoppingCart.listProducts = function () {
             var prods = [];
             data.objects.forEach(products => {
                 // Log each product info
-                
+
                 var lot = products.values[2];
                 var status = products.values[3].name;
                 var width = products.values[9];
