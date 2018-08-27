@@ -306,7 +306,7 @@ shoppingCart.addItemToCart = function (lot, width, long, m2, first_pay, main_pri
         }
     }
 
-    for (var i in this.cart) {
+    for (var i in this.cart) { // busca el articulo mas caro para poner el precio de escritura secundario
         if (this.cart[i].price >= price) {
             console.log(this.cart[i]);
             deed = altDeed;
@@ -363,8 +363,8 @@ shoppingCart.totalCartF = function () { //-> regresa el total de costo
     var totalFirstPayF = 0;
 
     for (var i in this.cart) {
-        totalListPriceF += this.cart[i].price;
-        totalDeedF += this.cart[i].deed;
+        totalListPriceF += this.cart[i].list_price;
+        totalDeedF += this.cart[i].list_deed;
         totalFirstPayF += this.cart[i].first_pay;
     }
 
@@ -391,8 +391,8 @@ shoppingCart.totalCart20 = function () { //-> regresa el total de costo
     var totalFirstPay20 = 0;
 
     for (var i in this.cart) {
-        totalListPrice20 += this.cart[i].price;
-        totalDeed20 += this.cart[i].deed;
+        totalListPrice20 += this.cart[i].main_price;
+        totalDeed20 += this.cart[i].main_deed;
         totalFirstPay20 += this.cart[i].first_pay;
     }
 
@@ -419,8 +419,8 @@ shoppingCart.totalCartMsi = function () { //-> regresa el total de costo
     var totalFirstPayMsi = 0;
 
     for (var i in this.cart) {
-        totalListPriceMsi += this.cart[i].price;
-        totalDeedMsi += this.cart[i].deed;
+        totalListPriceMsi += this.cart[i].list_price;
+        totalDeedMsi += this.cart[i].list_deed;
         totalFirstPayMsi += this.cart[i].first_pay;
     }
 
@@ -447,8 +447,8 @@ shoppingCart.totalCartOne = function () { //-> regresa el total de costo
     var totalFirstPayOne = 0;
 
     for (var i in this.cart) {
-        totalListPriceOne += this.cart[i].price;
-        totalDeedOne += this.cart[i].deed;
+        totalListPriceOne += this.cart[i].main_price;
+        totalDeedOne += this.cart[i].main_deed;
         totalFirstPayOne += this.cart[i].first_pay;
     }
 
