@@ -317,20 +317,22 @@ shoppingCart.addItemToCart = function (lot, width, long, m2, first_pay, main_pri
         console.log("cart status 1 o mas");
         for (var j in this.cart) { // busca el articulo mas caro para poner el precio de escritura secundario
             if (this.cart[j].list_price >= list_price) {
-
-
                 console.log(this.cart[i]);
-
-
                 deed = list_deed_alt;
-
-
                 console.log("deed es: " + deed + " main_Deed es: " + main_deed + " main_deed_alt es: " + main_deed_alt + " list_deed es: " + list_deed + " list_deed_alt es: " + list_deed_alt);
-
-
+                break;
             } else {
                 console.log("entre al else");
-                
+
+
+                for (var p in this.cart) {
+                    if (this.cart[p].lot === this.cart[j].lot) {
+                        this.cart[p].deed = this.cart[p].list_deed_alt;
+                        this.saveCart();
+                    }
+                }
+
+
                 deed = list_deed;
                 var testitem = new this.Item(lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, count);
                 console.log(testitem);
