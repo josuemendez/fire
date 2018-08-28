@@ -21,7 +21,7 @@ $(".add-to-cart").click(function (event) {
     var list_deed_alt = Number($(this).attr("data-listDeedAlt"));
 
 
-    shoppingCart.addItemToCart(lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, 1);
+    shoppingCart.addItemToCart(lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, 0, 1);
     displayCart();
     loadPayTableF();
     loadPayTable20();
@@ -51,8 +51,8 @@ function displayCart() {
                     "</td><td>" + cartArray[i].m2 +
                     " m2 (" + cartArray[i].width + " x " + cartArray[i].long +
                     ")<td>$" + cartArray[i].list_price +
-                    "</td><td>$" + cartArray[i].list_deed +
-                    " </td><td>$" + (cartArray[i].list_price + cartArray[i].list_deed) +
+                    "</td><td>$" + cartArray[i].deed +
+                    " </td><td>$" + (cartArray[i].list_price + cartArray[i].deed) +
                     " </td><td><a class='delete-item danger' data-name='" + cartArray[i].lot + "'>Eliminar</a></td></tr>";
 
             }
@@ -281,7 +281,7 @@ var shoppingCart = {};
 shoppingCart.cart = [];
 shoppingCart.holdDeal = [];
 
-shoppingCart.Item = function (lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price,  main_deed, main_deed_alt, list_deed, list_deed_alt, count) {   
+shoppingCart.Item = function (lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, count) {
     this.lot = lot
     this.width = width
     this.long = long
@@ -295,10 +295,12 @@ shoppingCart.Item = function (lot, width, long, m2, first_pay, main_price_m2, ma
     this.main_deed_alt = main_deed_alt
     this.list_deed = list_deed
     this.list_deed_alt = list_deed_alt
+    this.deed = deed
     this.count = count
 };
 
-shoppingCart.addItemToCart = function (lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, count) {
+shoppingCart.addItemToCart = function (lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, count) {
+    var cartStatus = shoppingCart.countCart();
     for (var i in this.cart) {
         if (this.cart[i].lot === lot) {
             alert("Este lote ya está en su carrito!");
@@ -306,17 +308,38 @@ shoppingCart.addItemToCart = function (lot, width, long, m2, first_pay, main_pri
         }
     }
 
-    for (var i in this.cart) { // busca el articulo mas caro para poner el precio de escritura secundario
-        if (this.cart[i].price >= price) {
-            console.log(this.cart[i]);
-            deed = altDeed;
-            console.log("deed es: " + deed + " altDeed es: " + altDeed + " mainDeed es: " + mainDeed);
-        } else {
-            console.log("entre al else");
-            deed = mainDeed;
+    if (cartStatus === 0) {
+        deed = list_deed;
+        console.log("cart status 0");
+        var testitem = new this.Item(lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, count);
+        console.log(testitem);
+    } else {
+        console.log("cart status 1 o mas");
+        for (var j in this.cart) { // busca el articulo mas caro para poner el precio de escritura secundario
+            if (this.cart[j].list_price >= list_price) {
+
+
+                console.log(this.cart[i]);
+
+
+                deed = list_deed_alt;
+
+
+                console.log("deed es: " + deed + " main_Deed es: " + main_deed + " main_deed_alt es: " + main_deed_alt + " list_deed es: " + list_deed + " list_deed_alt es: " + list_deed_alt);
+
+
+            } else {
+                console.log("entre al else");
+                
+                deed = list_deed;
+                var testitem = new this.Item(lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, count);
+                console.log(testitem);
+            }
         }
     }
-    var item = new this.Item(lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, count);
+
+   
+    var item = new this.Item(lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, count);
     this.cart.push(item);
     this.saveCart();
 };
