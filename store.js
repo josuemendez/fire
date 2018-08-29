@@ -22,6 +22,7 @@ $(".add-to-cart").click(function (event) {
 
 
     shoppingCart.addItemToCart(lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, 0, 1);
+    shoppingCart.reorderItems();
     displayCart();
     loadPayTableF();
     loadPayTable20();
@@ -265,6 +266,7 @@ function checkoutPayment() {
 $("#show-cart, #cart-summary").on("click", ".delete-item", function (event) {
     var name = $(this).attr("data-lot");
     shoppingCart.removeItemFromCartAll(name);
+    shoppingCart.reorderItems();
     displayCart();
     loadPayTableF();
     loadPayTable20();
@@ -299,7 +301,7 @@ shoppingCart.Item = function (lot, width, long, m2, first_pay, main_price_m2, ma
     this.count = count
 };
 
-shoppingCart.addItemToCart = function (lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, count) {
+/*shoppingCart.addItemToCart = function (lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, count) {
     var cartStatus = shoppingCart.countCart();
     for (var i in this.cart) {
         if (this.cart[i].lot === lot) {
@@ -317,14 +319,10 @@ shoppingCart.addItemToCart = function (lot, width, long, m2, first_pay, main_pri
         console.log("cart status 1 o mas");
         for (var j in this.cart) { // busca el articulo mas caro para poner el precio de escritura secundario
             if (this.cart[j].list_price >= list_price) {
-                console.log(this.cart[i]);
                 deed = list_deed_alt;
                 console.log("deed es: " + deed + " main_Deed es: " + main_deed + " main_deed_alt es: " + main_deed_alt + " list_deed es: " + list_deed + " list_deed_alt es: " + list_deed_alt);
                 break;
             } else {
-                console.log("entre al else");
-
-
                 for (var p in this.cart) {
                     if (this.cart[p].lot === this.cart[j].lot) {
                         this.cart[p].deed = this.cart[p].list_deed_alt;
@@ -344,16 +342,32 @@ shoppingCart.addItemToCart = function (lot, width, long, m2, first_pay, main_pri
     var item = new this.Item(lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, count);
     this.cart.push(item);
     this.saveCart();
-    this.reorderItems();
-};
+};*/
 
-//select the most expensive product
+
+shoppingCart.addItemToCart = function (lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, count) {
+    for (var i in this.cart) {
+        if (this.cart[i].lot === lot) {
+            alert("Este lote ya está en su carrito!");
+            /*this.cart[i].count += count; 
+             this.saveCart();*/
+            return;
+        }
+    }
+    deed = list_deed;
+    var item = new this.Item(lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, count);
+    this.cart.push(item);
+    console.log(item);
+    this.saveCart();
+    this.reorderItems();
+}; 
+
+
+//select the most expensive product to asign the proper
 shoppingCart.reorderItems = function () {
     var cartStatus = shoppingCart.countCart();
     var holdItem = [];
-    console.log("Cart Status " + cartStatus);
-
-    if (cartStatus >= 1) {
+    if (cartStatus >= 1) {//find the most expensive product
         val2 = 0;
         for (var i in this.cart) {
             var val1 = this.cart[i].list_price;
@@ -363,9 +377,16 @@ shoppingCart.reorderItems = function () {
             }
         }
     }
-
-
-
+    for (var i in this.cart) {
+        if (holdItem.lot != this.cart[i].lot) {
+            this.cart[i].deed = this.cart[i].list_deed_alt;
+            this.saveCart();
+        }else{
+            this.cart[i].deed = this.cart[i].list_deed;
+            this.saveCart();
+        }
+    }
+    var holdItem = [];
 };
 
 
@@ -391,6 +412,7 @@ shoppingCart.removeItemFromCartAll = function (lot) { //remueve todos los items 
         }
     }
     this.saveCart();
+    this.reorderItems();
 };
 
 /*shoppingCart.clearCart = function () {
@@ -641,7 +663,6 @@ shoppingCart.clearDeal = function () {
     this.saveDeal();
 };
 //deal end
-
 shoppingCart.listProducts();
 shoppingCart.loadCart();
 //shoppingCart.loadDeal();
