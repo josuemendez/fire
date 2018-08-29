@@ -53,7 +53,7 @@ function displayCart() {
                     ")<td>$" + cartArray[i].list_price +
                     "</td><td>$" + cartArray[i].deed +
                     " </td><td>$" + (cartArray[i].list_price + cartArray[i].deed) +
-                    " </td><td><a class='delete-item danger' data-name='" + cartArray[i].lot + "'>Eliminar</a></td></tr>";
+                    " </td><td><a class='delete-item danger' data-lot='" + cartArray[i].lot + "'>Eliminar</a></td></tr>";
 
             }
             output += "</tbody></table>";
@@ -225,7 +225,7 @@ function cartSummary() {
                 output += "<tr><td scope=" + 'row' + " class=" + 'text-left' + ">Lote " +
                     cartArray[i].lot +
                     "</td><td>Anticipo $" + cartArray[i].first_pay +
-                    "</td><td><a class='delete-item' data-name='" + cartArray[i].lot + "'>Eliminar</a></td></tr>";
+                    "</td><td><a class='delete-item' data-lot='" + cartArray[i].lot + "'>Eliminar</a></td></tr>";
 
             }
             output += " <tr><td class=" + 'text-left' + ">Plan de Pago</td><td>" + payPlan + "</td><td></td></tr> <tr><td class=" + 'text-left' + "><label>Total a Pagar</label></td><td><label>$" + payTotal + ".00</label></td><td></td></tr>  </tbody></table>";
@@ -263,7 +263,7 @@ function checkoutPayment() {
 };
 
 $("#show-cart, #cart-summary").on("click", ".delete-item", function (event) {
-    var name = $(this).attr("data-name");
+    var name = $(this).attr("data-lot");
     shoppingCart.removeItemFromCartAll(name);
     displayCart();
     loadPayTableF();
@@ -340,11 +340,35 @@ shoppingCart.addItemToCart = function (lot, width, long, m2, first_pay, main_pri
         }
     }
 
-   
+
     var item = new this.Item(lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, count);
     this.cart.push(item);
     this.saveCart();
+    this.reorderItems();
 };
+
+//select the most expensive product
+shoppingCart.reorderItems = function () {
+    var cartStatus = shoppingCart.countCart();
+    var holdItem = [];
+    console.log("Cart Status " + cartStatus);
+
+    if (cartStatus >= 1) {
+        val2 = 0;
+        for (var i in this.cart) {
+            var val1 = this.cart[i].list_price;
+            if (val1 > val2) {
+                holdItem = this.cart[i];
+                val2 = this.cart[i].list_price;
+            }
+        }
+    }
+
+
+
+};
+
+
 
 /*shoppingCart.removeItemFromCart = function (lot) { //remueve un item 
     for (var i in this.cart) {
