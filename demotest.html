@@ -13,49 +13,66 @@
     <p id="listado"></p>
     <!-- Muestra el listado JJ -->
 
-    <div id="products"></div>
+    <div id="productSelect"></div>
 
 </body>
 <script>
     /*
-                                // Create a request variable and assign a new XMLHttpRequest object to it.
-                                var request = new XMLHttpRequest();
-                                // Open a new connection, using the GET request on the URL endpoint
-                                request.open('GET', 'https://api.hubapi.com/hubdb/api/v1/tables/697778/rows?portalId=2795955', true);
-                                request.onload = function () {
-                                    // Begin accessing JSON data here
-                                    var datas = JSON.parse(this.response); //cambie la palabra data a datas
-                                    if (request.status >= 200 && request.status < 400) {
+                                        // Create a request variable and assign a new XMLHttpRequest object to it.
+                                        var request = new XMLHttpRequest();
+                                        // Open a new connection, using the GET request on the URL endpoint
+                                        request.open('GET', 'https://api.hubapi.com/hubdb/api/v1/tables/697778/rows?portalId=2795955', true);
+                                        request.onload = function () {
+                                            // Begin accessing JSON data here
+                                            var datas = JSON.parse(this.response); //cambie la palabra data a datas
+                                            if (request.status >= 200 && request.status < 400) {
 
-                                        var datas2 = JSON.stringify(datas); //variable datas2 convierte a string los objetos - JJ
-                                        document.getElementById("listado").innerHTML = datas2; //agrego al p con id listado - JJ
+                                                var datas2 = JSON.stringify(datas); //variable datas2 convierte a string los objetos - JJ
+                                                document.getElementById("listado").innerHTML = datas2; //agrego al p con id listado - JJ
 
-                                    } else {
-                                        console.log('error connecting to HubDB API');
-                                    }
-                                }
-                                // Send request
-                                request.send();
-                            */
+                                            }
+                                            } else {
+                                                console.log('error connecting to HubDB API');
+                                            }
+                                        }
+                                        // Send request
+                                        request.send();
+                                    */
 
     function displayProds() {
 
-        $.getJSON('https://api.hubapi.com/hubdb/api/v1/tables/697778/rows?portalId=2795955', function (json) {
-            var output = "<select class=" + 'lot-toggle' + " data-target=" + '.lot-info' +
-                "><option value=" + 'none' + " data-show=" + '.none' + ">Selecciona un lote</option>";
-            $(json.objects).each(function (index, prod) {
-                var status = prod.values[3].name;
-                if (status == 'vendido') {
-                    output += "<option value='" + prod.values[2] + "'data-show='" + '.' + prod.values[2] + "'>" + prod.values[2] + " - Vendido</option>";
-                } else {
-                    output += "<option value='" + prod.values[2] + "'data-show='" + '.' + prod.values[2] + "'>" + prod.values[2] + "</option>";
-                }
-            });
-            output += "</select>";
-            $("#products").html(output);
-        });
-    };
+        $.getJSON('temp_files/storedb.json', function (json) {
+                    var outputSelect = "<select class=" + 'lot-toggle' + " data-target=" + '.lot-info' +
+                        "><option value=" + 'none' + " data-show=" + '.none' + ">Selecciona un lote</option>";
+                    $(json.objects).each(function (index, prod) {
+                        var status = prod.values[3].name;
+                        if (status == 'vendido') {
+                            outputSelect += "<option value='" + prod.values[2] + "'data-show='" + '.' + prod.values[
+                                2] + "'>" + prod.values[2] + " - Vendido</option>";
+                        } else {
+                            outputSelect += "<option value='" + prod.values[2] + "'data-show='" + '.' + prod.values[
+                                2] + "'>" + prod.values[2] + "</option>";
+                        }
+                    });
+                    outputSelect += "</select>";
+
  
+                    $(json.objects).each(function (index, info) {
+                        var status = prod.values[3].name;
+                        
+var outputInfo = "<div class=" + 'lot-info' + "><div class=" + 'hide' + prod.values[2] + "><div class=" + 'row' + "><div class=" + 'col-6' + "><label>M2</label><p>"+prod.values[16]+"</p></div><div class="+'col-6'+"><label>Medidas</label><p>"+prod.values[9]+" x "+prod.values[10]+"</p></div></div><div class="+'row'+"><div class="+'col-6'+"><label>Precio del lote</label><p>"+prod.values[20]+"</p></div><div class="+'col-6'+"><label>Valor escrituras</label><p>"+prod.values[23]+"</p></div></div><div class="+'row'+"><div class="+'lot-total col-6'+"><label>Precio final</label><p>"+(prod.values[20] + prod.values[23])+"</p></div><div class="+'col-6'+"></div></div><div>";
+                        
+if (status == 'vendido') {
+                               outputInfo += " <button type="+'button'+" class=" +'add-to-cart'+" data-lot='"+prod.values[2]+"' data-width='"+prod.values[9]+"' data-long='"+prod.values[10]+"' data-m2='"+ prod.values[16]+"' data-first='"+prod.values[20]+"' data-mainPriceM2='"+ prod.values[17] +"' data-mainPrice='"+ prod.values[18]+"' data-listPriceM2='"+ prod.values[19]+"' data-listPrice='"+ prod.values[20]+"' data-mainDeed='"+ prod.values[21]+"' data-mainDeedAlt='"+ prod.values[22]+"' data-listDeed='"+ prod.values[23]+"' data-listDeedAlt='"+ prod.values[24]+"'>Agregar al carrito</button></div ></div ></div > "
+}else{
+outputInfo += "<button type="+'button'+" disabled>Agregar al carrito</button></div></div></div >";
+
+}
+                            
+                    });
+                    $("#productSelect").html(outputSelect);
+            $("#productInfo").html(outputInfo);
+                };
 </script>
 
 </html>
