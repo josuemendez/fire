@@ -1,8 +1,22 @@
 //creates products list
 function displayProds() {
-
-
+    $.getJSON('https://api.hubapi.com/hubdb/api/v1/tables/697778/rows?portalId=2795955', function (json) {
+        var output = "<select class=" + 'lot-toggle' + " data-target=" + '.lot-info' +
+            "><option value=" + 'none' + " data-show=" + '.none' + ">Selecciona un lote</option>";
+        $(json.objects).each(function (index, prod) {
+            var status = prod.values[3].name;
+            if (status == 'vendido') {
+                output += "<option value='" + prod.values[2] + "'data-show='" + '.' + prod.values[2] + "'>" + prod.values[2] + " - Vendido</option>";
+            } else {
+                output += "<option value='" + prod.values[2] + "'data-show='" + '.' + prod.values[2] + "'>" + prod.values[2] + "</option>";
+            }
+        });
+        output += "</select>";
+        $("#products_drop").html(output);
+    });
 };
+
+
 
 $(".add-to-cart").click(function (event) {
     event.preventDefault();
@@ -281,6 +295,7 @@ $("#show-cart, #cart-summary").on("click", ".delete-item", function (event) {
 
 var shoppingCart = {};
 shoppingCart.cart = [];
+shoppingCart.prods = [];
 shoppingCart.holdDeal = [];
 
 shoppingCart.Item = function (lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, count) {
@@ -360,14 +375,14 @@ shoppingCart.addItemToCart = function (lot, width, long, m2, first_pay, main_pri
     console.log(item);
     this.saveCart();
     this.reorderItems();
-}; 
+};
 
 
 //select the most expensive product to asign the proper
 shoppingCart.reorderItems = function () {
     var cartStatus = shoppingCart.countCart();
     var holdItem = [];
-    if (cartStatus >= 1) {//find the most expensive product
+    if (cartStatus >= 1) { //find the most expensive product
         val2 = 0;
         for (var i in this.cart) {
             var val1 = this.cart[i].list_price;
@@ -381,7 +396,7 @@ shoppingCart.reorderItems = function () {
         if (holdItem.lot != this.cart[i].lot) {
             this.cart[i].deed = this.cart[i].list_deed_alt;
             this.saveCart();
-        }else{
+        } else {
             this.cart[i].deed = this.cart[i].list_deed;
             this.saveCart();
         }
@@ -540,6 +555,23 @@ shoppingCart.totalCartOne = function () { //-> regresa el total de costo
     };
 };
 
+shoppingCart.Prod = function (lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt) {
+    this.lot = lot
+    this.width = width
+    this.long = long
+    this.m2 = m2
+    this.first_pay = first_pay
+    this.main_price_m2 = main_price_m2
+    this.main_price = main_price
+    this.list_price_m2 = list_price_m2
+    this.list_price = list_price
+    this.main_deed = main_deed
+    this.main_deed_alt = main_deed_alt
+    this.list_deed = list_deed
+    this.list_deed_alt = list_deed_alt
+};
+
+/*
 shoppingCart.listProducts = function () {
 
     // Create a request variable and assign a new XMLHttpRequest object to it.
@@ -554,15 +586,25 @@ shoppingCart.listProducts = function () {
             data.objects.forEach(products => {
                 // Log each product info
 
+
                 var lot = products.values[2];
                 var status = products.values[3].name;
                 var width = products.values[9];
                 var long = products.values[10];
-                var price = products.values[11];
-                var deed = products.values[12]
-                var deed_alt = products.values[15]
-                var disc = products.values[13];
-                var firstPay = products.values[14];
+                var m2 = products.values[16];
+                var first_pay = products.values[14];
+                var main_price_m2 = products.values[17];
+                var main_price = products.values[18];
+                var list_price_m2 = products.values[19];
+                var list_price = products.values[20];
+                var main_deed = products.values[21];
+                var main_deed_alt = products.values[22];
+                var list_deed = products.values[23];
+                var list_deed_alt = products.values[24];
+
+
+
+
             });
         } else {
             console.log('Error connecting to HubDB API');
@@ -570,9 +612,12 @@ shoppingCart.listProducts = function () {
     }
 
     // Send request
-    //request.send();
+    request.send();
     //return prods;
 };
+*/
+
+
 
 shoppingCart.listCart = function () {
     var cartCopy = [];
@@ -663,7 +708,10 @@ shoppingCart.clearDeal = function () {
     this.saveDeal();
 };
 //deal end
+
+
 shoppingCart.listProducts();
+displayProds();
 shoppingCart.loadCart();
 //shoppingCart.loadDeal();
 //shoppingCart.dealCalc();
