@@ -14,6 +14,7 @@
     <!-- Muestra el listado JJ -->
 
     <div id="productSelect"></div>
+<div id="productInfo"></div>
 
 </body>
 <script>
@@ -41,23 +42,20 @@
 
     function displayProds() {
 
-        $.getJSON('temp_files/storedb.json', function (json) {
-                    var outputSelect = "<select class=" + 'lot-toggle' + " data-target=" + '.lot-info' +
-                        "><option value=" + 'none' + " data-show=" + '.none' + ">Selecciona un lote</option>";
+        $.getJSON('https://api.hubapi.com/hubdb/api/v1/tables/697778/rows?portalId=2795955', function (json) {
+                    var outputSelect = "<select class=" + 'lot-toggle' + " data-target=" + '.lot-info' +"><option value=" + 'none' + " data-show=" + '.none' + ">Selecciona un lote</option>";
                     $(json.objects).each(function (index, prod) {
                         var status = prod.values[3].name;
                         if (status == 'vendido') {
-                            outputSelect += "<option value='" + prod.values[2] + "'data-show='" + '.' + prod.values[
-                                2] + "'>" + prod.values[2] + " - Vendido</option>";
+                            outputSelect += "<option value='" + prod.values[2] + "'data-show='" + '.' + prod.values[2] + "'>" + prod.values[2] + " - Vendido</option>";
                         } else {
-                            outputSelect += "<option value='" + prod.values[2] + "'data-show='" + '.' + prod.values[
-                                2] + "'>" + prod.values[2] + "</option>";
+                            outputSelect += "<option value='" + prod.values[2] + "'data-show='" + '.' + prod.values[2] + "'>" + prod.values[2] + "</option>";
                         }
                     });
                     outputSelect += "</select>";
 
- 
-                    $(json.objects).each(function (index, info) {
+var outputInfo = "";
+                    $(json.objects).each(function (index, prod) {
                         var status = prod.values[3].name;
                         
 var outputInfo = "<div class=" + 'lot-info' + "><div class=" + 'hide' + prod.values[2] + "><div class=" + 'row' + "><div class=" + 'col-6' + "><label>M2</label><p>"+prod.values[16]+"</p></div><div class="+'col-6'+"><label>Medidas</label><p>"+prod.values[9]+" x "+prod.values[10]+"</p></div></div><div class="+'row'+"><div class="+'col-6'+"><label>Precio del lote</label><p>"+prod.values[20]+"</p></div><div class="+'col-6'+"><label>Valor escrituras</label><p>"+prod.values[23]+"</p></div></div><div class="+'row'+"><div class="+'lot-total col-6'+"><label>Precio final</label><p>"+(prod.values[20] + prod.values[23])+"</p></div><div class="+'col-6'+"></div></div><div>";
@@ -70,9 +68,23 @@ outputInfo += "<button type="+'button'+" disabled>Agregar al carrito</button></d
 }
                             
                     });
-                    $("#productSelect").html(outputSelect);
-            $("#productInfo").html(outputInfo);
-                };
+
+
+$("#productSelect").html(outputSelect);
+$("#productInfo").html(outputInfo);
+
+});
+
+
+};
+
+
+
+displayProds();
+ 
+                    
+                    
+                
 </script>
 
 </html>
