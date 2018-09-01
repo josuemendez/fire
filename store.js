@@ -1,36 +1,3 @@
-displayProds();
-//creates products list
-function displayProds() {
-
-    $.getJSON('https://api.hubapi.com/hubdb/api/v1/tables/697778/rows?portalId=2795955', function (json) {
-        var outputSelect = "<select class=" + 'lot-toggle' + " data-target=" + '.lot-info' + "><option value=" + 'none' + " data-show=" + '.none' + ">Selecciona un lote</option>";
-        $(json.objects).each(function (index, prod) {
-            var status = prod.values[3].name;
-            if (status == 'vendido') {
-                outputSelect += "<option value='" + prod.values[2] + "'data-show='" + '.' + prod.values[2] + "'>" + prod.values[2] + " - Vendido</option>";
-            } else {
-                outputSelect += "<option value='" + prod.values[2] + "'data-show='" + '.' + prod.values[2] + "'>" + prod.values[2] + "</option>";
-            }
-        });
-        outputSelect += "</select>";
-
-        var outputInfo = "<div class=" + 'lot-info' + "><div class='" + 'hide' + " " + 'none' + "'><div class=" + 'row' + "><div class=" + 'col-6' + "><label>M2</label><p>—</p></div><div class=" + 'col-6' + "><label>Medidas</label><p>—</p></div></div><div class=" + 'row' + "><div class=" + 'col-6' + "><label>Precio del lote</label><p>—</p></div><div class=" + 'col-6' + "><label>Valor escrituras</label><p>—</p></div></div><div class=" + 'row' + "><div class='" + 'lot-total' + " " + 'col-6' + "'><label>Precio final</label><p>—</p></div><div class=" + 'col-6' + "></div></div><div><button type=" + 'button' + " disabled>Agregar al carrito</button></div></div></div >";
-        $(json.objects).each(function (index, prod) {
-            var status = prod.values[3].name;
-            outputInfo += "<div class=" + 'lot-info' + "><div class='" + 'hide' + " " + prod.values[2] + "'><div class=" + 'row' + "><div class=" + 'col-6' + "><label>M2</label><p>" + prod.values[16] + "</p></div><div class=" + 'col-6' + "><label>Medidas</label><p>" + prod.values[9] + " x " + prod.values[10] + "</p></div></div><div class=" + 'row' + "><div class=" + 'col-6' + "><label>Precio del lote</label><p>" + prod.values[20] + "</p></div><div class=" + 'col-6' + "><label>Valor escrituras</label><p>" + prod.values[23] + "</p></div></div><div class=" + 'row' + "><div class='" + 'lot-total' + " " + 'col-6' + "'><label>Precio final</label><p>" + (prod.values[20] + prod.values[23]) + "</p></div><div class=" + 'col-6' + "></div></div><div>";
-
-            if (status == 'vendido') {
-                outputInfo += "<button type=" + 'button' + " disabled>Agregar al carrito</button></div></div></div >";
-            } else {
-                outputInfo += " <button type=" + 'button' + " class=" + 'add-to-cart' + " data-lot='" + prod.values[2] + "' data-width='" + prod.values[9] + "' data-long='" + prod.values[10] + "' data-m2='" + prod.values[16] + "' data-first='" + prod.values[20] + "' data-mainPriceM2='" + prod.values[17] + "' data-mainPrice='" + prod.values[18] + "' data-listPriceM2='" + prod.values[19] + "' data-listPrice='" + prod.values[20] + "' data-mainDeed='" + prod.values[21] + "' data-mainDeedAlt='" + prod.values[22] + "' data-listDeed='" + prod.values[23] + "' data-listDeedAlt='" + prod.values[24] + "'>Agregar al carrito</button></div></div></div > "
-            }
-        });
-        outputInfo += "<div class=" + 'lot-link' + "><a href=" + '#' + ">Conoce las formas de pago</a></div>";
-        $("#productSelect").html(outputSelect);
-        $("#productInfo").html(outputInfo);
-    });
-};
-
 //Dynamic option menu 
 $(document).on('change', '.lot-toggle', function () {
     var target = $(this).data('target');
@@ -45,6 +12,7 @@ $(document).ready(function () {
 
 $(".add-to-cart").click(function (event) {
     event.preventDefault();
+    var id = $(this).attr("data-id");
     var lot = $(this).attr("data-lot");
     var width = Number($(this).attr("data-width"));
     var long = Number($(this).attr("data-long"));
@@ -63,7 +31,7 @@ $(".add-to-cart").click(function (event) {
     var count = 1;
 
 
-    shoppingCart.addItemToCart(lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, deed_alt, count);
+    shoppingCart.addItemToCart(id, lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, deed_alt, count);
     shoppingCart.reorderItems();
     displayCart();
     loadPayTableF();
@@ -326,7 +294,8 @@ shoppingCart.cart = [];
 shoppingCart.prods = [];
 shoppingCart.holdDeal = [];
 
-shoppingCart.Item = function (lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, count) {
+shoppingCart.Item = function (id, lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, count) {
+    this.id = id
     this.lot = lot
     this.width = width
     this.long = long
@@ -344,51 +313,7 @@ shoppingCart.Item = function (lot, width, long, m2, first_pay, main_price_m2, ma
     this.count = count
 };
 
-/*shoppingCart.addItemToCart = function (lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, count) {
-    var cartStatus = shoppingCart.countCart();
-    for (var i in this.cart) {
-        if (this.cart[i].lot === lot) {
-            alert("Este lote ya está en su carrito!");
-            return;
-        }
-    }
-
-    if (cartStatus === 0) {
-        deed = list_deed;
-        console.log("cart status 0");
-        var testitem = new this.Item(lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, count);
-        console.log(testitem);
-    } else {
-        console.log("cart status 1 o mas");
-        for (var j in this.cart) { // busca el articulo mas caro para poner el precio de escritura secundario
-            if (this.cart[j].list_price >= list_price) {
-                deed = list_deed_alt;
-                console.log("deed es: " + deed + " main_Deed es: " + main_deed + " main_deed_alt es: " + main_deed_alt + " list_deed es: " + list_deed + " list_deed_alt es: " + list_deed_alt);
-                break;
-            } else {
-                for (var p in this.cart) {
-                    if (this.cart[p].lot === this.cart[j].lot) {
-                        this.cart[p].deed = this.cart[p].list_deed_alt;
-                        this.saveCart();
-                    }
-                }
-
-
-                deed = list_deed;
-                var testitem = new this.Item(lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, count);
-                console.log(testitem);
-            }
-        }
-    }
-
-
-    var item = new this.Item(lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, count);
-    this.cart.push(item);
-    this.saveCart();
-};*/
-
-
-shoppingCart.addItemToCart = function (lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, deed_alt, count) {
+shoppingCart.addItemToCart = function (id, lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, deed_alt, count) {
     for (var i in this.cart) {
         if (this.cart[i].lot === lot) {
             alert("Este lote ya está en su carrito!");
@@ -397,7 +322,7 @@ shoppingCart.addItemToCart = function (lot, width, long, m2, first_pay, main_pri
     }
     deed = list_deed;
     deed_alt = main_deed;
-    var item = new this.Item(lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, deed_alt, count);
+    var item = new this.Item(id, lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, deed_alt, count);
     this.cart.push(item);
     console.log(item);
     this.saveCart();
@@ -584,7 +509,8 @@ shoppingCart.totalCartOne = function () { //-> regresa el total de costo
     };
 };
 
-shoppingCart.Prod = function (lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt) {
+shoppingCart.Prod = function (id, lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt) {
+    this.id = id
     this.lot = lot
     this.width = width
     this.long = long
@@ -599,54 +525,6 @@ shoppingCart.Prod = function (lot, width, long, m2, first_pay, main_price_m2, ma
     this.list_deed = list_deed
     this.list_deed_alt = list_deed_alt
 };
-
-/*
-shoppingCart.listProducts = function () {
-
-    // Create a request variable and assign a new XMLHttpRequest object to it.
-    var request = new XMLHttpRequest();
-    // Open a new connection, using the GET request on the URL endpoint
-    request.open('GET', 'https://api.hubapi.com/hubdb/api/v1/tables/697778/rows?portalId=2795955', true);
-    request.onload = function () {
-        // Begin accessing JSON data here
-        var data = JSON.parse(this.response);
-        if (request.status >= 200 && request.status < 400) {
-            var prods = [];
-            data.objects.forEach(products => {
-                // Log each product info
-
-
-                var lot = products.values[2];
-                var status = products.values[3].name;
-                var width = products.values[9];
-                var long = products.values[10];
-                var m2 = products.values[16];
-                var first_pay = products.values[14];
-                var main_price_m2 = products.values[17];
-                var main_price = products.values[18];
-                var list_price_m2 = products.values[19];
-                var list_price = products.values[20];
-                var main_deed = products.values[21];
-                var main_deed_alt = products.values[22];
-                var list_deed = products.values[23];
-                var list_deed_alt = products.values[24];
-
-
-
-
-            });
-        } else {
-            console.log('Error connecting to HubDB API');
-        }
-    }
-
-    // Send request
-    request.send();
-    //return prods;
-};
-*/
-
-
 
 shoppingCart.listCart = function () {
     var cartCopy = [];
@@ -674,7 +552,6 @@ shoppingCart.loadCart = function () {
         this.cart = [];
     }
 };
-
 
 //guarda tipo de financiamiento
 shoppingCart.Deal = function (deal) {
