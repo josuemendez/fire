@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>-->
     <script type="text/javascript" src="temp_files/jquery.js"></script>
+    <script type="text/javascript" src="store.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="store.css" />
@@ -20,13 +21,6 @@
         </div>
     </div>
 
-<div id="productSelect">
-    aqui
-</div>
-<div id="productInfo">
-    aqui
-</div>
-
     <div class="ob-container">
         <h3 class="orve-title">Selecciona tus lotes</h3>
         <div class="row">
@@ -37,230 +31,10 @@
                 <label>Lote*</label>
                 <br>
                 <div id="productSelect">
-                    <select class="lot-toggle" data-target=".lot-info">
-                        <option value="none" data-show=".none">Selecciona un lote</option>
-                        <option value="A1" data-show=".A1">001 - vendido</option>
-                        <option value="A2" data-show=".A2">002</option>
-                        <option value="A3" data-show=".A3">003</option>
-                        <option value="A4" data-show=".A4">004</option>
-                        <option value="A5" data-show=".A5">005</option>
-                    </select>
+                    <!--Products select-->
                 </div>
                 <div class="" id="productInfo">
-                    <div class="lot-info">
-                        <div class="hide none row">
-                            <div class="hide none col-6">
-                                <label class="none">M2</label>
-                                <p class="none">—</p>
-                            </div>
-                            <div class="hide none col-6">
-                                <label class="none">Medidas</label>
-                                <p class="none">—</p>
-                            </div>
-                        </div>
-                        <div class="hide none row">
-                            <div class="none col-6">
-                                <label class="hide none">Precio del lote</label>
-                                <p class="none">—</p>
-                            </div>
-                            <div class="none col-6">
-                                <label class="hide none">Valor escrituras</label>
-                                <p class="none">—</p>
-                            </div>
-                        </div>
-                        <div class="hide none row">
-                            <div class="none lot-total col-6">
-                                <label class="hide none">Precio final</label>
-                                <p class="none">—</p>
-                            </div>
-                            <div class="none col-6">
-                            </div>
-                        </div>
-                        <div class="hide none">
-                            <button type="button" class="none" disabled>Agregar al carrito</button>
-                        </div>
-                    </div>
-
-                    <div class="lot-info">
-                        <div class="hide A1">
-                            <div class="row">
-                                <div class="col-6">
-                                    <label>M2</label>
-                                    <p>1681.82</p>
-                                </div>
-                                <div class="col-6">
-                                    <label>Medidas</label>
-                                    <p>45.06 x 49.24</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <label>Precio del lote</label>
-                                    <p class="">$401954.98</p>
-                                </div>
-                                <div class="col-6">
-                                    <label>Valor escrituras</label>
-                                    <p>$16500</p>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="lot-total col-6">
-                                    <label>Precio final</label>
-                                    <p>$418454.98</p>
-                                </div>
-                                <div class="col-6"></div>
-                            </div>
-                            <div class="">
-                                <button type="button" disabled>Agregar al carrito</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="lot-info">
-                        <div class="hide A2">
-                            <div class="row">
-                                <div class="col-6">
-                                    <label>M2</label>
-                                    <p>1547.72</p>
-                                </div>
-                                <div class="col-6">
-                                    <label>Medidas</label>
-                                    <p>79.28 x 34.8</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <label>Precio del lote</label>
-                                    <p>$369905.08</p>
-                                </div>
-                                <div class="col-6">
-                                    <label>Valor escrituras</label>
-                                    <p>$16500.00</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="lot-total col-6">
-                                    <label>Precio final</label>
-                                    <p>$386405.08</p>
-                                </div>
-                                <div class="col-6"></div>
-                            </div>
-                            <div>
-                                <button type="button" class="add-to-cart" data-lot="002" data-width="79.28" data-long="34.8" data-m2="1547.72" data-first="25000"
-                                    data-mainPriceM2="198" data-mainPrice="306448.56" data-listPriceM2="239" data-listPrice="369905.08"
-                                    data-mainDeed="15000" data-mainDeedAlt="9000" data-listDeed="16500" data-listDeedAlt="11300">Agregar al carrito
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="lot-info">
-                        <div class="hide A3">
-                            <div class="row">
-                                <div class="col-6">
-                                    <label>M2</label>
-                                    <p>1133.79</p>
-                                </div>
-                                <div class="col-6">
-                                    <label>Medidas</label>
-                                    <p>17.71 x 50.19</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <label>Precio del lote</label>
-                                    <p>$270975.81</p>
-                                </div>
-                                <div class="col-6">
-                                    <label>Valor escrituras</label>
-                                    <p>$16500.00</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="lot-total col-6">
-                                    <label>Precio final</label>
-                                    <p>$287475.81</p>
-                                </div>
-                                <div class="col-6"></div>
-                            </div>
-                            <div>
-                                <button type="button" class="add-to-cart" data-lot="003" data-width="17.71" data-long="50.19" data-first="25000" data-m2="1133.79"
-                                    data-mainPriceM2="198" data-mainPrice="224490.42" data-listPriceM2="239" data-listPrice="270975.81"
-                                    data-mainDeed="15000" data-mainDeedAlt="9000" data-listDeed="16500" data-listDeedAlt="11300">Agregar al carrito</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="lot-info">
-                        <div class="hide A4">
-                            <div class="row">
-                                <div class="col-6">
-                                    <label>M2</label>
-                                    <p>735</p>
-                                </div>
-                                <div class="col-6">
-                                    <label>Medidas</label>
-                                    <p>15 x 49</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <label>Precio del lote</label>
-                                    <p>$175665.00</p>
-                                </div>
-                                <div class="col-6">
-                                    <label class="hide A4">Valor escrituras</label>
-                                    <p>$14500.00</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="lot-total col-6">
-                                    <label>Precio final</label>
-                                    <p>$190165.00</p>
-                                </div>
-                                <div class="col-6"></div>
-                            </div>
-                            <div>
-                                <button type="button" class="add-to-cart" data-lot="004" data-width="15" data-long="49" data-m2="735" data-first="15000"
-                                    data-mainPriceM2="198" data-mainPrice="145530" data-listPriceM2="239" data-listPrice="175665"
-                                    data-mainDeed="10300" data-mainDeedAlt="5500" data-listDeed="14500" data-listDeedAlt="7000">Agregar al carrito</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="lot-info">
-                        <div class="hide A5">
-                            <div class="row">
-                                <div class="col-6">
-                                    <label>M2</label>
-                                    <p>220</p>
-                                </div>
-                                <div class="col-6">
-                                    <label>Medidas</label>
-                                    <p>11 x 20</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <label>Precio del lote</label>
-                                    <p>$20000.00</p>
-                                </div>
-                                <div class="col-6">
-                                    <label class="hide A5">Valor escrituras</label>
-                                    <p>$9000.00</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="lot-total col-6">
-                                    <label>Precio final</label>
-                                    <p>$29000.00</p>
-                                </div>
-                                <div class="col-6"></div>
-                            </div>
-                            <div>
-                                <button type="button" class="add-to-cart" data-width="11" data-long="20" data-price="20000" data-deed="0" data-mainDeed="9000"
-                                    data-altDeed="750" data-first="7500" data-disc="0.2" data-lot="A5">Agregar al carrito</button>
-                            </div>
-                        </div>
-                    </div>
+                    <!--Informacion de productos-->
                     <div class="lot-link">
                         <a href="#">Conoce las formas de pago</a>
                     </div>
@@ -367,16 +141,20 @@
                             <tr class="no-border">
                                 <td scope="row"></td>
                                 <td>
-                                    <button type="button" class="checkout-btn" id="pay-btn-f" data-deal="Financiamiento Orve" disabled>Financiamiento</button>
+                                    <button type="button" class="checkout-btn" id="pay-btn-f" data-deal="Financiamiento Orve"
+                                        disabled>Financiamiento</button>
                                 </td>
                                 <td>
-                                    <button type="button" class="checkout-btn" id="pay-btn-20" data-deal="Saldo 20 dias Orve" disabled>Saldo 20 dias</button>
+                                    <button type="button" class="checkout-btn" id="pay-btn-20" data-deal="Saldo 20 dias Orve"
+                                        disabled>Saldo 20 dias</button>
                                 </td>
                                 <td>
-                                    <button type="button" class="checkout-btn" id="pay-btn-msi" data-deal="Meses sin intereses" disabled>MSI</button>
+                                    <button type="button" class="checkout-btn" id="pay-btn-msi" data-deal="Meses sin intereses"
+                                        disabled>MSI</button>
                                 </td>
                                 <td>
-                                    <button type="button" class="checkout-btn" id="pay-btn-one" data-deal="1 solo pago" disabled>1 Pago</button>
+                                    <button type="button" class="checkout-btn" id="pay-btn-one" data-deal="1 solo pago"
+                                        disabled>1 Pago</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -389,45 +167,43 @@
         <div class="ob-container">
             <ul class="rules">
                 <li>
-                    <b>1. Financiamiento orve:</b> Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas
-                    purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac
+                    <b>1. Financiamiento orve:</b> Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis
+                    aliquet egestas
+                    purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante,
+                    ac
                     egestas est urna sit amet arcu. Class aptent. </li>
                 <li>
-                    <b>2. Saldo 20 días orve:</b> Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
-                    Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing
+                    <b>2. Saldo 20 días orve:</b> Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
+                    posuere cubilia
+                    Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur
+                    adipiscing
                     elit. Vivamus. </li>
                 <li>
-                    <b>3. Meses sin intereses:</b> Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
-                    cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur
+                    <b>3. Meses sin intereses:</b> Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
+                    posuere
+                    cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet,
+                    consectetur
                     adipiscing elit. Vivamus luctus urna.
                 </li>
                 <li>
-                    <b>4. 1 solo pago:</b> Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus
-                    condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in
+                    <b>4. 1 solo pago:</b> Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a
+                    porttitor lectus
+                    condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget
+                    in
                     metus. In pellentesque.</li>
             </ul>
         </div>
     </div>
 
-    <script>
-        //Dynamic option menu 
-        $(document).on('change', '.lot-toggle', function () {
-            var target = $(this).data('target');
-            var show = $("option:selected", this).data('show');
-            $(target).children().addClass('hide');
-            $(show).removeClass('hide');
-        });
-        $(document).ready(function () {
-            $('.lot-toggle').trigger('change');
-        });
-        //end dynamic option menu
-    </script>
-    <script type="text/javascript" src="store.js"></script>
+
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
-
+    <script>
+       
+    </script>
 
 </body>
 
