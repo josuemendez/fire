@@ -1,44 +1,33 @@
-//Dynamic option menu 
-$(document).on('change', '.lot-toggle', function () {
-    var target = $(this).data('target');
-    var show = $("option:selected", this).data('show');
-    $(target).children().addClass('hide');
-    $(show).removeClass('hide');
-});
 $(document).ready(function () {
-    $('.lot-toggle').trigger('change');
-});
-//end dynamic option menu
+    $(".addCart").click(function (event) {
+        event.preventDefault();
+        var id = $(this).attr("data-id");
+        var lot = $(this).attr("data-lot");
+        var width = Number($(this).attr("data-width"));
+        var long = Number($(this).attr("data-long"));
+        var first_pay = Number($(this).attr("data-first"));
+        var m2 = Number($(this).attr("data-m2"));
+        var main_price_m2 = Number($(this).attr("data-mainPriceM2"));
+        var main_price = Number($(this).attr("data-mainPrice"));
+        var list_price_m2 = Number($(this).attr("data-listPriceM2"));
+        var list_price = Number($(this).attr("data-listPrice"));
+        var main_deed = Number($(this).attr("data-mainDeed"));
+        var main_deed_alt = Number($(this).attr("data-mainDeedAlt"));
+        var list_deed = Number($(this).attr("data-listDeed"));
+        var list_deed_alt = Number($(this).attr("data-listDeedAlt"));
+        var deed = 0;
+        var deed_alt = 0;
+        var count = 1;
 
-$(".add-to-cart").click(function (event) {
-    event.preventDefault();
-    var id = $(this).attr("data-id");
-    var lot = $(this).attr("data-lot");
-    var width = Number($(this).attr("data-width"));
-    var long = Number($(this).attr("data-long"));
-    var first_pay = Number($(this).attr("data-first"));
-    var m2 = Number($(this).attr("data-m2"));
-    var main_price_m2 = Number($(this).attr("data-mainPriceM2"));
-    var main_price = Number($(this).attr("data-mainPrice"));
-    var list_price_m2 = Number($(this).attr("data-listPriceM2"));
-    var list_price = Number($(this).attr("data-listPrice"));
-    var main_deed = Number($(this).attr("data-mainDeed"));
-    var main_deed_alt = Number($(this).attr("data-mainDeedAlt"));
-    var list_deed = Number($(this).attr("data-listDeed"));
-    var list_deed_alt = Number($(this).attr("data-listDeedAlt"));
-    var deed = 0;
-    var deed_alt = 0;
-    var count = 1;
-
-
-    shoppingCart.addItemToCart(id, lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, deed_alt, count);
-    shoppingCart.reorderItems();
-    displayCart();
-    loadPayTableF();
-    loadPayTable20();
-    loadPayTableMsi();
-    loadPayTableOne();
-    cartSummary();
+        shoppingCart.addItemToCart(id, lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, deed_alt, count);
+        shoppingCart.reorderItems();
+        displayCart();
+        loadPayTableF();
+        loadPayTable20();
+        loadPayTableMsi();
+        loadPayTableOne();
+        cartSummary();
+    });
 });
 
 $(".checkout-btn").click(function (event) {
@@ -69,8 +58,6 @@ function displayCart() {
             }
             output += "</tbody></table>";
             $("#show-cart").html(cartTitle + output);
-            //$("#count-cart").html(shoppingCart.countCart());
-            //$("#total-cart").html(shoppingCart.totalCart());
             $("#pay-btn-f").prop("disabled", false);
             $("#pay-btn-20").prop("disabled", false);
             $("#pay-btn-msi").prop("disabled", false);
@@ -285,8 +272,6 @@ $("#show-cart, #cart-summary").on("click", ".delete-item", function (event) {
     cartSummary();
 });
 
-
-
 //****** Shopping Cart Functions********//
 
 var shoppingCart = {};
@@ -357,7 +342,6 @@ shoppingCart.reorderItems = function () {
     }
     var holdItem = [];
 };
-
 
 
 /*shoppingCart.removeItemFromCart = function (lot) { //remueve un item 
