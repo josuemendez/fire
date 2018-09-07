@@ -1,4 +1,18 @@
 $(document).ready(function () {
+    //Dynamic option menu 
+    $(document).on('change', '.lot-toggle', function () {
+        var target = $(this).data('target');
+        var show = $("option:selected", this).data('show');
+        $(target).children().addClass('hide');
+        $(show).removeClass('hide');
+    });
+    $(document).ready(function () {
+        $('.lot-toggle').trigger('change');
+    });
+    //end dynamic option menu
+});
+
+$(document).ready(function () {
     $(".addCart").click(function (event) {
         event.preventDefault();
         var id = $(this).attr("data-id");

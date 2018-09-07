@@ -39,17 +39,4 @@ displayInfo();
 
      });
  };
-$(document).ready(function () {
-    //Dynamic option menu 
-    $(document).on('change', '.lot-toggle', function () {
-        var target = $(this).data('target');
-        var show = $("option:selected", this).data('show');
-        $(target).children().addClass('hide');
-        $(show).removeClass('hide');
-    });
-    $(document).ready(function () {
-        $('.lot-toggle').trigger('change');
-    });
-    //end dynamic option menu
-});
 //end creates products list
