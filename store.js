@@ -293,7 +293,7 @@ shoppingCart.cart = [];
 shoppingCart.prods = [];
 shoppingCart.holdDeal = [];
 
-shoppingCart.Item = function (id, lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, count) {
+shoppingCart.Item = function (id, lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, deed_alt, count) {
     this.id = id
     this.lot = lot
     this.width = width
@@ -309,6 +309,7 @@ shoppingCart.Item = function (id, lot, width, long, m2, first_pay, main_price_m2
     this.list_deed = list_deed
     this.list_deed_alt = list_deed_alt
     this.deed = deed
+    this.deed_alt = deed_alt
     this.count = count
 };
 

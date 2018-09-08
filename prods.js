@@ -29,7 +29,7 @@ displayInfo();
                  outputInfo += "<button type=" + 'button' + " disabled>Agregar al carrito</button></div></div></div >";
              } else {
 
-                 outputInfo += " <button type=" + 'button' + " class=" + 'addCart' + " data-id='" + prod.id + "' data-lot='" + prod.values[2] + "' data-width='" + prod.values[9] + "' data-long='" + prod.values[10] + "' data-m2='" + prod.values[16] + "' data-first='" + prod.values[20] + "' data-mainPriceM2='" + prod.values[17] + "' data-mainPrice='" + prod.values[18] + "' data-listPriceM2='" + prod.values[19] + "' data-listPrice='" + prod.values[20] + "' data-mainDeed='" + prod.values[21] + "' data-mainDeedAlt='" + prod.values[22] + "' data-listDeed='" + prod.values[23] + "' data-listDeedAlt='" + prod.values[24] + "'>Agregar al carrito</button></div></div></div > "
+                 outputInfo += " <button type=" + 'button' + " class=" + 'addCart' + " data-id='" + prod.id + "' data-lot='" + prod.values[2] + "' data-width='" + prod.values[9] + "' data-long='" + prod.values[10] + "' data-m2='" + prod.values[16] + "' data-first='" + prod.values[14] + "' data-mainPriceM2='" + prod.values[17] + "' data-mainPrice='" + prod.values[18] + "' data-listPriceM2='" + prod.values[19] + "' data-listPrice='" + prod.values[20] + "' data-mainDeed='" + prod.values[21] + "' data-mainDeedAlt='" + prod.values[22] + "' data-listDeed='" + prod.values[23] + "' data-listDeedAlt='" + prod.values[24] + "'>Agregar al carrito</button></div></div></div > "
 
              }
          });
