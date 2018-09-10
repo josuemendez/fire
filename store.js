@@ -1,47 +1,35 @@
 $(document).ready(function () {
-    //Dynamic option menu 
-    $(document).on('change', '.lot-toggle', function () {
-        var target = $(this).data('target');
-        var show = $("option:selected", this).data('show');
-        $(target).children().addClass('hide');
-        $(show).removeClass('hide');
-    });
-    $(document).ready(function () {
-        $('.lot-toggle').trigger('change');
-    });
-    //end dynamic option menu
-});
+    setTimeout(function () {
+        $(".addCart").click(function (event) {
+            event.preventDefault();
+            var id = $(this).attr("data-id");
+            var lot = $(this).attr("data-lot");
+            var width = Number($(this).attr("data-width"));
+            var long = Number($(this).attr("data-long"));
+            var first_pay = Number($(this).attr("data-first"));
+            var m2 = Number($(this).attr("data-m2"));
+            var main_price_m2 = Number($(this).attr("data-mainPriceM2"));
+            var main_price = Number($(this).attr("data-mainPrice"));
+            var list_price_m2 = Number($(this).attr("data-listPriceM2"));
+            var list_price = Number($(this).attr("data-listPrice"));
+            var main_deed = Number($(this).attr("data-mainDeed"));
+            var main_deed_alt = Number($(this).attr("data-mainDeedAlt"));
+            var list_deed = Number($(this).attr("data-listDeed"));
+            var list_deed_alt = Number($(this).attr("data-listDeedAlt"));
+            var deed = 0;
+            var deed_alt = 0;
+            var count = 1;
 
-$(document).ready(function () {
-    $(".addCart").click(function (event) {
-        event.preventDefault();
-        var id = $(this).attr("data-id");
-        var lot = $(this).attr("data-lot");
-        var width = Number($(this).attr("data-width"));
-        var long = Number($(this).attr("data-long"));
-        var first_pay = Number($(this).attr("data-first"));
-        var m2 = Number($(this).attr("data-m2"));
-        var main_price_m2 = Number($(this).attr("data-mainPriceM2"));
-        var main_price = Number($(this).attr("data-mainPrice"));
-        var list_price_m2 = Number($(this).attr("data-listPriceM2"));
-        var list_price = Number($(this).attr("data-listPrice"));
-        var main_deed = Number($(this).attr("data-mainDeed"));
-        var main_deed_alt = Number($(this).attr("data-mainDeedAlt"));
-        var list_deed = Number($(this).attr("data-listDeed"));
-        var list_deed_alt = Number($(this).attr("data-listDeedAlt"));
-        var deed = 0;
-        var deed_alt = 0;
-        var count = 1;
-
-        shoppingCart.addItemToCart(id, lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, deed_alt, count);
-        shoppingCart.reorderItems();
-        displayCart();
-        loadPayTableF();
-        loadPayTable20();
-        loadPayTableMsi();
-        loadPayTableOne();
-        cartSummary();
-    });
+            shoppingCart.addItemToCart(id, lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, deed_alt, count);
+            shoppingCart.reorderItems();
+            displayCart();
+            loadPayTableF();
+            loadPayTable20();
+            loadPayTableMsi();
+            loadPayTableOne();
+            cartSummary();
+        });
+    }, 400);
 });
 
 $(".checkout-btn").click(function (event) {
@@ -263,7 +251,7 @@ function checkoutPayment() {
             for (var i in cartArray) {
                 //var payTotal =+ cartArray[i].price;
                 var y = +i + 1;
-                payForm += "<input type=" + 'hidden' + " name=" + 'item_name_' + y + " value=" + 'Lote-' + cartArray[i].lot + "><input type=" + 'hidden' + " name=" + 'amount_' + y + " value=" + cartArray[i].price + ">";
+                payForm += "<input type=" + 'hidden' + " name=" + 'item_name_' + y + " value=" + 'Lote-' + cartArray[i].lot + "><input type=" + 'hidden' + " name=" + 'amount_' + y + " value=" + cartArray[i].first_pay + ">";
             }
             payForm += "<button type=" + 'submit' + " id=" + 'payment' + ">Pagar</button></form>";
             $("#pay-form").html(payForm);
