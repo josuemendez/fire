@@ -420,7 +420,7 @@ shoppingCart.totalCart20 = function () { //-> regresa el total de costo
     for (var i in this.cart) {
         totalListPrice20 += this.cart[i].main_price;
         totalDeed20 += this.cart[i].deed_alt;
-        totalFirstPay20 += this.cart[i].first_pay;
+        totalFirstPay20 += this.cart[i].main_price;
     }
 
     var fee20 = 0;
@@ -476,7 +476,7 @@ shoppingCart.totalCartOne = function () { //-> regresa el total de costo
     for (var i in this.cart) {
         totalListPriceOne += this.cart[i].main_price;
         totalDeedOne += this.cart[i].main_deed;
-        totalFirstPayOne += this.cart[i].first_pay;
+        totalFirstPayOne += this.cart[i].main_price;
     }
 
     var feeOne = 0;
