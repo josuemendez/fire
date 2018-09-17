@@ -81,31 +81,36 @@ function displayCart() {
 function loadPayTableF() {
     var cartStatus = shoppingCart.countCart();
     var pay = shoppingCart.totalCartF();
-    var totalListPriceF = pay.totalListPriceF;
-    var feeF = pay.feeF;
-    var totalDeedF = pay.totalDeedF;
-    var totalPayF = pay.totalPayF;
-    var totalFirstPayF = pay.totalFirstPayF;
-    var msi12F = pay.msi12F;
-    var msi24F = pay.msi24F;
+    var totalListPriceF = "$" + pay.totalListPriceF;
+    var feeF = "$" + pay.feeF;
+    var totalDeedF = "$" + pay.totalDeedF;
+    var totalPayF = "$" + pay.totalPayF;
+    var totalFirstPayF = "$" + pay.totalFirstPayF;
+    var msi12F = "$" + pay.msi12F;
+    var msi24F = "$" + pay.msi24F;
+    var saveF = "$"+ pay.saveF;
 
     $(document).ready(function () {
         if (cartStatus != 0) {
             $("#list-total-f").html(totalListPriceF);
             $("#op-fee-f").html(feeF);
+            $("#price-f").html(totalListPriceF);
             $("#deed-f").html(totalDeedF);
             $("#total-f").html(totalPayF);
             $("#first-pay-f").html(totalFirstPayF);
             $("#msi12-f").html(msi12F);
             $("#msi24-f").html(msi24F);
+            $("#save-f").html(saveF);
         } else {
             $("#list-total-f").html("—");
             $("#op-fee-f").html("—");
+            $("#price-f").html("—");
             $("#deed-f").html("—");
             $("#total-f").html("—");
             $("#first-pay-f").html("—");
             $("#msi12-f").html("—");
             $("#msi24-f").html("—");
+            $("#save-f").html("—");
         };
     });
 };
@@ -114,31 +119,37 @@ function loadPayTableF() {
 function loadPayTable20() {
     var cartStatus = shoppingCart.countCart();
     var pay = shoppingCart.totalCart20();
-    var totalListPrice20 = pay.totalListPrice20;
-    var fee20 = pay.fee20;
-    var totalDeed20 = pay.totalDeed20;
-    var totalPay20 = pay.totalPay20;
-    var totalFirstPay20 = pay.totalFirstPay20;
-    var msi1220 = pay.msi1220;
-    var msi2420 = pay.msi2420;
+    var totalListPrice20 = "$" + pay.totalListPrice20;
+    var totalMainPrice20 = "$" + pay.totalMainPrice20;
+    var fee20 = "$" + pay.fee20;
+    var totalDeed20 = "$" + pay.totalDeed20;
+    var totalPay20 = "$" + pay.totalPay20;
+    var totalFirstPay20 = "$" + pay.totalFirstPay20;
+    var msi1220 = "$" + pay.msi1220;
+    var msi2420 = "$" + pay.msi2420;
+    var save20 = "$" + pay.save20;
 
     $(document).ready(function () {
         if (cartStatus != 0) {
             $("#list-total-20").html(totalListPrice20);
             $("#op-fee-20").html(fee20);
+            $("#price-20").html(totalMainPrice20);
             $("#deed-20").html(totalDeed20);
             $("#total-20").html(totalPay20);
             $("#first-pay-20").html(totalFirstPay20);
             $("#msi12-20").html(msi1220);
             $("#msi24-20").html(msi2420);
+            $("#save-20").html(save20);
         } else {
             $("#list-total-20").html("—");
             $("#op-fee-20").html("—");
+            $("#price-20").html("-");
             $("#deed-20").html("—");
             $("#total-20").html("—");
             $("#first-pay-20").html("—");
             $("#msi12-20").html("—");
             $("#msi24-20").html("—");
+            $("#save-20").html("—");
         };
     });
 };
@@ -147,31 +158,36 @@ function loadPayTable20() {
 function loadPayTableMsi() {
     var cartStatus = shoppingCart.countCart();
     var pay = shoppingCart.totalCartMsi();
-    var totalListPriceMsi = pay.totalListPriceMsi;
-    var feeMsi = pay.feeMsi
-    var totalDeedMsi = pay.totalDeedMsi;
-    var totalPayMsi = pay.totalPayMsi;
-    var totalFirstPayMsi = pay.totalFirstPayMsi;
-    var msi12Msi = pay.msi12Msi;
-    var msi24Msi = pay.msi24Msi;
+    var totalListPriceMsi = "$" + pay.totalListPriceMsi;
+    var feeMsi = "$" + pay.feeMsi
+    var totalDeedMsi = "$" + pay.totalDeedMsi;
+    var totalPayMsi = "$" + pay.totalPayMsi;
+    var totalFirstPayMsi = "$" + pay.totalFirstPayMsi;
+    var msi12Msi = "$" + pay.msi12Msi;
+    var msi24Msi = "$" + pay.msi24Msi;
+    var saveMsi = "$" + pay.saveMsi;
 
     $(document).ready(function () {
         if (cartStatus != 0) {
             $("#list-total-msi").html(totalListPriceMsi);
             $("#op-fee-msi").html(feeMsi);
+            $("#price-msi").html(totalListPriceMsi);
             $("#deed-msi").html(totalDeedMsi);
             $("#total-msi").html(totalPayMsi);
             $("#first-pay-msi").html(totalFirstPayMsi);
             $("#msi12-msi").html(msi12Msi);
             $("#msi24-msi").html(msi24Msi);
+            $("#save-msi").html(saveMsi);
         } else {
             $("#list-total-msi").html("—");
             $("#op-fee-msi").html("—");
+            $("#price-msi").html("-");
             $("#deed-msi").html("—");
             $("#total-msi").html("—");
             $("#first-pay-msi").html("—");
             $("#msi12-msi").html("—");
             $("#msi24-msi").html("—");
+            $("#save-msi").html("—");
         };
     });
 };
@@ -180,31 +196,38 @@ function loadPayTableMsi() {
 function loadPayTableOne() {
     var cartStatus = shoppingCart.countCart();
     var pay = shoppingCart.totalCartOne();
-    var totalListPriceOne = pay.totalListPriceOne;
-    var feeOne = pay.feeOne
-    var totalDeedOne = pay.totalDeedOne;
-    var totalPayOne = pay.totalPayOne;
-    var totalFirstPayOne = pay.totalFirstPayOne;
-    var msi12One = pay.msi12One;
-    var msi24One = pay.msi24One;
+    var totalListPriceOne = "$" + pay.totalListPriceOne;
+    var totalMainPriceOne = "$" + pay.totalMainPriceOne;
+    var feeOne = "$" + pay.feeOne
+    var totalDeedOne = "$" + pay.totalDeedOne;
+    var totalPayOne = "$" + pay.totalPayOne;
+    var totalFirstPayOne = "$" + pay.totalFirstPayOne;
+    var msi12One = "$" + pay.msi12One;
+    var msi24One = "$" + pay.msi24One;
+    var saveOne = "$" + pay.saveOne;
 
     $(document).ready(function () {
         if (cartStatus != 0) {
             $("#list-total-one").html(totalListPriceOne);
             $("#op-fee-one").html(feeOne);
+            $("#price-one").html(totalMainPriceOne);
             $("#deed-one").html(totalDeedOne);
             $("#total-one").html(totalPayOne);
             $("#first-pay-one").html(totalFirstPayOne);
             $("#msi12-one").html(msi12One);
             $("#msi24-one").html(msi24One);
+            $("#msi24-one").html(msi24One);
+            $("#save-one").html(saveOne);
         } else {
             $("#list-total-one").html("—");
             $("#op-fee-one").html("—");
+            $("#price-one").html("-");
             $("#deed-one").html("—");
             $("#total-one").html("—");
             $("#first-pay-one").html("—");
             $("#msi12-one").html("—");
             $("#msi24-one").html("—");
+            $("#save-one").html("—");
         };
     });
 };
@@ -386,17 +409,21 @@ shoppingCart.countCart = function () { //-> regresa el total de articulos
 
 shoppingCart.totalCartF = function () { //-> regresa el total de costo 
     var totalListPriceF = 0;
+    var totalMainPriceF = 0;
     var totalDeedF = 0;
     var totalFirstPayF = 0;
+    var totalSaveF = 0;
 
     for (var i in this.cart) {
         totalListPriceF += this.cart[i].list_price;
+        totalMainPriceF += this.cart[i].main_price;
         totalDeedF += this.cart[i].deed;
         totalFirstPayF += this.cart[i].first_pay;
     }
 
     var feeF = 500;
     var totalPayF = totalListPriceF + totalDeedF + feeF;
+    var totalSaveF = 0;
     var msi12F = (totalPayF - totalFirstPayF) / 12;
     var msi24F = (totalPayF - totalFirstPayF) / 24;
 
@@ -405,6 +432,7 @@ shoppingCart.totalCartF = function () { //-> regresa el total de costo
         feeF: feeF.toFixed(2),
         totalDeedF: totalDeedF.toFixed(2),
         totalPayF: totalPayF.toFixed(2),
+        saveF: totalSaveF.toFixed(2),
         totalFirstPayF: totalFirstPayF.toFixed(2),
         msi12F: msi12F.toFixed(2),
         msi24F: msi24F.toFixed(2)
@@ -414,25 +442,31 @@ shoppingCart.totalCartF = function () { //-> regresa el total de costo
 
 shoppingCart.totalCart20 = function () { //-> regresa el total de costo 
     var totalListPrice20 = 0;
+    var totalMainPrice20 = 0;
     var totalDeed20 = 0;
     var totalFirstPay20 = 0;
+    var totalSave20 = 0;
 
     for (var i in this.cart) {
-        totalListPrice20 += this.cart[i].main_price;
+        totalListPrice20 += this.cart[i].list_price;
+        totalMainPrice20 += this.cart[i].main_price;
         totalDeed20 += this.cart[i].deed_alt;
         totalFirstPay20 += this.cart[i].main_price;
     }
 
     var fee20 = 0;
     var totalPay20 = totalListPrice20 + totalDeed20 + fee20;
+    var totalSave20 = totalListPrice20 - totalMainPrice20;
     var msi1220 = 0;
     var msi2420 = 0;
 
     return {
         totalListPrice20: totalListPrice20.toFixed(2),
+        totalMainPrice20: totalMainPrice20.toFixed(2),
         fee20: fee20.toFixed(2),
         totalDeed20: totalDeed20.toFixed(2),
         totalPay20: totalPay20.toFixed(2),
+        save20: totalSave20.toFixed(2),
         totalFirstPay20: totalFirstPay20.toFixed(2),
         msi1220: msi1220.toFixed(2),
         msi2420: msi2420.toFixed(2)
@@ -442,17 +476,21 @@ shoppingCart.totalCart20 = function () { //-> regresa el total de costo
 
 shoppingCart.totalCartMsi = function () { //-> regresa el total de costo 
     var totalListPriceMsi = 0;
+    var totalMainPriceMsi = 0;
     var totalDeedMsi = 0;
     var totalFirstPayMsi = 0;
+    var totalSaveMsi = 0;
 
     for (var i in this.cart) {
         totalListPriceMsi += this.cart[i].list_price;
+        totalMainPriceMsi += this.cart[i].main_price;
         totalDeedMsi += this.cart[i].deed;
         totalFirstPayMsi += this.cart[i].first_pay;
     }
 
     var feeMsi = 0;
     var totalPayMsi = totalListPriceMsi + totalDeedMsi + feeMsi;
+    var totalSaveMsi = 0;
     var msi12Msi = (totalPayMsi - totalFirstPayMsi) / 12;
     var msi24Msi = (totalPayMsi - totalFirstPayMsi) / 24;
 
@@ -461,6 +499,7 @@ shoppingCart.totalCartMsi = function () { //-> regresa el total de costo
         feeMsi: feeMsi.toFixed(2),
         totalDeedMsi: totalDeedMsi.toFixed(2),
         totalPayMsi: totalPayMsi.toFixed(2),
+        saveMsi: totalSaveMsi.toFixed(2),
         totalFirstPayMsi: totalFirstPayMsi.toFixed(2),
         msi12Msi: msi12Msi.toFixed(2),
         msi24Msi: msi24Msi.toFixed(2)
@@ -470,25 +509,31 @@ shoppingCart.totalCartMsi = function () { //-> regresa el total de costo
 
 shoppingCart.totalCartOne = function () { //-> regresa el total de costo 
     var totalListPriceOne = 0;
+    var totalMainPriceOne = 0;
     var totalDeedOne = 0;
     var totalFirstPayOne = 0;
+    var totalSaveOne = 0;
 
     for (var i in this.cart) {
-        totalListPriceOne += this.cart[i].main_price;
+        totalListPriceOne += this.cart[i].list_price;
+        totalMainPriceOne += this.cart[i].main_price;
         totalDeedOne += this.cart[i].main_deed;
         totalFirstPayOne += this.cart[i].main_price;
     }
 
     var feeOne = 0;
     var totalPayOne = totalListPriceOne + totalDeedOne + feeOne;
+    var totalSaveOne = totalListPriceOne - totalMainPriceOne;
     var msi12One = 0;
     var msi24One = 0;
 
     return {
         totalListPriceOne: totalListPriceOne.toFixed(2),
+        totalMainPriceOne: totalMainPriceOne.toFixed(2),
         feeOne: feeOne.toFixed(2),
         totalDeedOne: totalDeedOne.toFixed(2),
         totalPayOne: totalPayOne.toFixed(2),
+        saveOne: totalSaveOne.toFixed(2),
         totalFirstPayOne: totalFirstPayOne.toFixed(2),
         msi12One: msi12One.toFixed(2),
         msi24One: msi24One.toFixed(2)
