@@ -88,7 +88,7 @@ function loadPayTableF() {
     var totalFirstPayF = "$" + pay.totalFirstPayF;
     var msi12F = "$" + pay.msi12F;
     var msi24F = "$" + pay.msi24F;
-    var saveF = "$"+ pay.saveF;
+    var saveF = "$" + pay.saveF;
 
     $(document).ready(function () {
         if (cartStatus != 0) {
@@ -285,6 +285,28 @@ function checkoutPayment() {
     });
 };
 
+function checkoutTerms() {
+    var cartStatus = shoppingCart.countCart();
+    $(document).ready(function () {
+        if (cartStatus != 0) {
+            var payTerms = "<button class=" + 'terms-btn' + " id=" + 'payment' + ">Pagar</button>";
+            $("#pay-terms").html(payTerms);
+
+            $(".terms-btn").click(function (event) {
+                event.preventDefault();
+                window.location.href = "terms-and-conditions.html";
+            })
+        } else {
+            var payTerms = "<button class=" + 'terms-btn' + " id=" + 'payment' + ">Regresar</button>";
+            $("#pay-terms").html(payTerms);
+             $(".terms-btn").click(function (event) {
+                 event.preventDefault();
+                 window.location.href = "orve-cart.html";
+             })
+        };
+    });
+};
+
 $("#show-cart, #cart-summary").on("click", ".delete-item", function (event) {
     var name = $(this).attr("data-lot");
     shoppingCart.removeItemFromCartAll(name);
@@ -295,6 +317,7 @@ $("#show-cart, #cart-summary").on("click", ".delete-item", function (event) {
     loadPayTableMsi();
     loadPayTableOne();
     cartSummary();
+    checkoutTerms()
 });
 
 //****** Shopping Cart Functions********//
@@ -663,3 +686,4 @@ loadPayTableOne();
 displayCart();
 cartSummary();
 checkoutPayment();
+checkoutTerms();
