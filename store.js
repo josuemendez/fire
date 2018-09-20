@@ -234,7 +234,7 @@ function loadPayTableOne() {
 //*********** end fill payment table by finance option *****************
 
 // checkout summary //
-function cartSummary() {
+/*function cartSummary() {
     var payPlan = shoppingCart.loadDeal();
     var cartArray = shoppingCart.listCart();
     var cartStatus = shoppingCart.countCart();
@@ -260,7 +260,52 @@ function cartSummary() {
             $("#payment").prop("disabled", true);
         };
     });
+};*/
+//Transferencia, Credito, Meses sin intereses Orve, MSI Credito
+function cartSummary() {
+    var payPlan = shoppingCart.loadDeal();
+    var cartArray = shoppingCart.listCart();
+    var cartStatus = shoppingCart.countCart();
+    var cartTitle = "<h2 class=" + 'orve-title' + ">Resumen del pedido</h2>";
+    $(document).ready(function () {
+        if (cartStatus != 0) {
+if ((payPlan == "Transferencia") || (payPlan == "Credito")) {
+console.log("soy de contado");
+
+}else{
+console.log("soy a meses");
+
 };
+            var payTotal = 0;
+            var output = "<table class=" + 'table' + "><tbody><tr><th scope=" + 'col' + " class=" + 'text-left' + ">Producto</th><th scope=" + 'col' + ">Descripción</th><th scope=" + 'col' + "></th></tr >";
+            for (var i in cartArray) {
+                var payTotal = payTotal + cartArray[i].first_pay;
+                output += "<tr><td scope=" + 'row' + " class=" + 'text-left' + ">Lote " +
+                    cartArray[i].lot +
+                    "</td><td>Anticipo $" + cartArray[i].first_pay +
+                    "</td><td><a class='delete-item' data-lot='" + cartArray[i].lot + "'>Eliminar</a></td></tr>";
+
+            }
+            output += " <tr><td class=" + 'text-left' + ">Plan de Pago</td><td>" + payPlan + "</td><td></td></tr> <tr><td class=" + 'text-left' + "><label>Total a Pagar</label></td><td><label>$" + payTotal + ".00</label></td><td></td></tr>  </tbody></table>";
+            $("#cart-summary").html(cartTitle + output);
+            $("#payment").prop("disabled", false);
+
+
+        } else {
+            var output = "";
+            $("#cart-summary").html(output);
+            $("#payment").prop("disabled", true);
+        };
+    });
+};
+
+
+
+
+
+
+
+
 
 // Pyapal payment form 
 function checkoutPayment() {
@@ -289,7 +334,7 @@ function checkoutTerms() {
     var cartStatus = shoppingCart.countCart();
     $(document).ready(function () {
         if (cartStatus != 0) {
-            var payTerms = "<button class=" + 'terms-btn' + " id=" + 'payment' + ">Pagar</button>";
+            var payTerms = "<button class=" + 'terms-btn' + " id=" + 'payment' + ">Continuar</button>";
             $("#pay-terms").html(payTerms);
 
             $(".terms-btn").click(function (event) {
@@ -364,7 +409,7 @@ shoppingCart.addItemToCart = function (id, lot, width, long, m2, first_pay, main
 };
 
 
-//select the most expensive product to asign the proper
+//select the most expensive product to assign the proper
 shoppingCart.reorderItems = function () {
     var cartStatus = shoppingCart.countCart();
     var holdItem = [];
@@ -430,39 +475,6 @@ shoppingCart.countCart = function () { //-> regresa el total de articulos
     return totalCount
 };
 
-shoppingCart.totalCartF = function () { //-> regresa el total de costo 
-    var totalListPriceF = 0;
-    var totalMainPriceF = 0;
-    var totalDeedF = 0;
-    var totalFirstPayF = 0;
-    var totalSaveF = 0;
-
-    for (var i in this.cart) {
-        totalListPriceF += this.cart[i].list_price;
-        totalMainPriceF += this.cart[i].main_price;
-        totalDeedF += this.cart[i].deed;
-        totalFirstPayF += this.cart[i].first_pay;
-    }
-
-    var feeF = 500;
-    var totalPayF = totalListPriceF + totalDeedF + feeF;
-    var totalSaveF = 0;
-    var msi12F = (totalPayF - totalFirstPayF) / 12;
-    var msi24F = (totalPayF - totalFirstPayF) / 24;
-
-    return {
-        totalListPriceF: totalListPriceF.toFixed(2),
-        feeF: feeF.toFixed(2),
-        totalDeedF: totalDeedF.toFixed(2),
-        totalPayF: totalPayF.toFixed(2),
-        saveF: totalSaveF.toFixed(2),
-        totalFirstPayF: totalFirstPayF.toFixed(2),
-        msi12F: msi12F.toFixed(2),
-        msi24F: msi24F.toFixed(2)
-
-    };
-};
-
 shoppingCart.totalCart20 = function () { //-> regresa el total de costo 
     var totalListPrice20 = 0;
     var totalMainPrice20 = 0;
@@ -481,7 +493,7 @@ shoppingCart.totalCart20 = function () { //-> regresa el total de costo
     var totalPay20 = totalListPrice20 + totalDeed20 + fee20;
     var totalSave20 = totalListPrice20 - totalMainPrice20;
     var msi1220 = 0;
-    var msi2420 = 0;
+    //var msi2420 = 0;
 
     return {
         totalListPrice20: totalListPrice20.toFixed(2),
@@ -492,40 +504,7 @@ shoppingCart.totalCart20 = function () { //-> regresa el total de costo
         save20: totalSave20.toFixed(2),
         totalFirstPay20: totalFirstPay20.toFixed(2),
         msi1220: msi1220.toFixed(2),
-        msi2420: msi2420.toFixed(2)
-
-    };
-};
-
-shoppingCart.totalCartMsi = function () { //-> regresa el total de costo 
-    var totalListPriceMsi = 0;
-    var totalMainPriceMsi = 0;
-    var totalDeedMsi = 0;
-    var totalFirstPayMsi = 0;
-    var totalSaveMsi = 0;
-
-    for (var i in this.cart) {
-        totalListPriceMsi += this.cart[i].list_price;
-        totalMainPriceMsi += this.cart[i].main_price;
-        totalDeedMsi += this.cart[i].deed;
-        totalFirstPayMsi += this.cart[i].first_pay;
-    }
-
-    var feeMsi = 0;
-    var totalPayMsi = totalListPriceMsi + totalDeedMsi + feeMsi;
-    var totalSaveMsi = 0;
-    var msi12Msi = (totalPayMsi - totalFirstPayMsi) / 12;
-    var msi24Msi = (totalPayMsi - totalFirstPayMsi) / 24;
-
-    return {
-        totalListPriceMsi: totalListPriceMsi.toFixed(2),
-        feeMsi: feeMsi.toFixed(2),
-        totalDeedMsi: totalDeedMsi.toFixed(2),
-        totalPayMsi: totalPayMsi.toFixed(2),
-        saveMsi: totalSaveMsi.toFixed(2),
-        totalFirstPayMsi: totalFirstPayMsi.toFixed(2),
-        msi12Msi: msi12Msi.toFixed(2),
-        msi24Msi: msi24Msi.toFixed(2)
+        //msi2420: msi2420.toFixed(2)
 
     };
 };
@@ -548,7 +527,7 @@ shoppingCart.totalCartOne = function () { //-> regresa el total de costo
     var totalPayOne = totalListPriceOne + totalDeedOne + feeOne;
     var totalSaveOne = totalListPriceOne - totalMainPriceOne;
     var msi12One = 0;
-    var msi24One = 0;
+    //var msi24One = 0;
 
     return {
         totalListPriceOne: totalListPriceOne.toFixed(2),
@@ -559,10 +538,78 @@ shoppingCart.totalCartOne = function () { //-> regresa el total de costo
         saveOne: totalSaveOne.toFixed(2),
         totalFirstPayOne: totalFirstPayOne.toFixed(2),
         msi12One: msi12One.toFixed(2),
-        msi24One: msi24One.toFixed(2)
+        //msi24One: msi24One.toFixed(2)
 
     };
 };
+
+shoppingCart.totalCartF = function () { //-> regresa el total de costo 
+    var totalListPriceF = 0;
+    var totalMainPriceF = 0;
+    var totalDeedF = 0;
+    var totalFirstPayF = 0;
+    var totalSaveF = 0;
+
+    for (var i in this.cart) {
+        totalListPriceF += this.cart[i].list_price;
+        totalMainPriceF += this.cart[i].main_price;
+        totalDeedF += this.cart[i].deed;
+        totalFirstPayF += this.cart[i].first_pay;
+    }
+
+    var feeF = 500;
+    var totalPayF = totalListPriceF + totalDeedF + feeF;
+    var totalSaveF = 0;
+    var msi12F = (totalPayF - totalFirstPayF) / 12;
+    //var msi24F = (totalPayF - totalFirstPayF) / 24;
+
+    return {
+        totalListPriceF: totalListPriceF.toFixed(2),
+        feeF: feeF.toFixed(2),
+        totalDeedF: totalDeedF.toFixed(2),
+        totalPayF: totalPayF.toFixed(2),
+        saveF: totalSaveF.toFixed(2),
+        totalFirstPayF: totalFirstPayF.toFixed(2),
+        msi12F: msi12F.toFixed(2),
+        //msi24F: msi24F.toFixed(2)
+
+    };
+};
+
+shoppingCart.totalCartMsi = function () { //-> regresa el total de costo 
+    var totalListPriceMsi = 0;
+    var totalMainPriceMsi = 0;
+    var totalDeedMsi = 0;
+    var totalFirstPayMsi = 0;
+    var totalSaveMsi = 0;
+
+    for (var i in this.cart) {
+        totalListPriceMsi += this.cart[i].list_price;
+        totalMainPriceMsi += this.cart[i].main_price;
+        totalDeedMsi += this.cart[i].deed;
+        totalFirstPayMsi += this.cart[i].first_pay;
+    }
+
+    var feeMsi = 0;
+    var totalPayMsi = totalListPriceMsi + totalDeedMsi + feeMsi;
+    var totalSaveMsi = 0;
+    var msi12Msi = (totalPayMsi - totalFirstPayMsi) / 12;
+    //var msi24Msi = (totalPayMsi - totalFirstPayMsi) / 24;
+
+    return {
+        totalListPriceMsi: totalListPriceMsi.toFixed(2),
+        feeMsi: feeMsi.toFixed(2),
+        totalDeedMsi: totalDeedMsi.toFixed(2),
+        totalPayMsi: totalPayMsi.toFixed(2),
+        saveMsi: totalSaveMsi.toFixed(2),
+        totalFirstPayMsi: totalFirstPayMsi.toFixed(2),
+        msi12Msi: msi12Msi.toFixed(2),
+        //msi24Msi: msi24Msi.toFixed(2)
+
+    };
+};
+
+
 
 shoppingCart.Prod = function (id, lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt) {
     this.id = id
@@ -647,7 +694,6 @@ shoppingCart.loadDeal = function () {
     this.holdDeal = JSON.parse(localStorage.getItem('orveDeal'));
     if (this.holdDeal === null) {
         this.holdDeal = [];
-        console.log("loadDeal es null");
     } else {
         console.log("este es el loadDeal " + this.holdDeal[0].deal);
         this.selectedDeal = this.holdDeal[0].deal;
@@ -656,12 +702,12 @@ shoppingCart.loadDeal = function () {
 };
 
 
-shoppingCart.dealCalc = function () {
+/*shoppingCart.dealCalc = function () {
     if (this.holdDeal[0].deal === "Financiamiento Orve") {
         console.log("soy: Financiamiento Orve")
     };
     console.log("soy: otra cosa")
-};
+};*/
 
 
 shoppingCart.clearDeal = function () {
