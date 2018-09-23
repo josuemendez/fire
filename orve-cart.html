@@ -1,17 +1,33 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>ORVE - Lotes</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>-->
-    <script type="text/javascript" src="temp_files/jquery.js"></script>
-    <script type="text/javascript" src="prods.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="assets/js/zoomple.js"></script>
+    <script type="text/javascript" src="assets/js/prods.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
         crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" media="screen" href="store.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/store.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/zoomple.css" />
+    <script>
+        //Image zoom
+        $('.zoomple').zoomple({
+        offset: {
+        x: -150,
+        y: -150
+        },
+        zoomWidth: 300,
+        zoomHeight: 300,
+        roundedCorners: true
+        });
+    </script>
 </head>
+
 <body>
     <div class="head-bg">
         <div class="container main-title">
@@ -22,7 +38,7 @@
         <h3 class="orve-title">Selecciona tus lotes</h3>
         <div class="row">
             <div class="col-lg-7 col-md-6">
-                <img src="placeholder.jpg" alt="">
+                <a href="assets/images/image.jpg" class="zoomple"><img src="assets/images/image.jpg" alt="" /> </a>
             </div>
             <div class="col-lg-5 col-md-6">
                 <label>Lote*</label>
@@ -31,7 +47,7 @@
                     Loading products, if this takes to long please reload.
                 </div>
                 <div id="productInfo">
-                   
+
                 </div>
             </div>
         </div>
@@ -126,16 +142,20 @@
                             <tr class="no-border">
                                 <td scope="row"></td>
                                 <td>
-                                    <button type="button" class="checkout-btn" id="pay-btn-one" data-deal="Transferencia" disabled>Transferencia</button>
+                                    <button type="button" class="checkout-btn" id="pay-btn-one" data-deal="Transferencia"
+                                        disabled>Transferencia</button>
                                 </td>
                                 <td>
-                                    <button type="button" class="checkout-btn" id="pay-btn-20" data-deal="Credito" disabled>Credito</button>
+                                    <button type="button" class="checkout-btn" id="pay-btn-20" data-deal="Credito"
+                                        disabled>Credito</button>
                                 </td>
                                 <td>
-                                    <button type="button" class="checkout-btn" id="pay-btn-f" data-deal="Meses sin intereses Orve" disabled>MSI Orve</button>
+                                    <button type="button" class="checkout-btn" id="pay-btn-f" data-deal="Meses sin intereses Orve"
+                                        disabled>MSI Orve</button>
                                 </td>
                                 <td>
-                                    <button type="button" class="checkout-btn" id="pay-btn-msi" data-deal="MSI Credito" disabled>MSI Credito</button>
+                                    <button type="button" class="checkout-btn" id="pay-btn-msi" data-deal="MSI Credito"
+                                        disabled>MSI Credito</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -176,7 +196,7 @@
         </div>
     </div>
     <script>
-    $(document).ready(function () {
+        $(document).ready(function () {
             //Dynamic option menu 
             $(document).on('change', '.lot-toggle', function () {
                 var target = $(this).data('target');
@@ -190,7 +210,7 @@
             //end dynamic option menu
         });
     </script>
-    <script type="text/javascript" src="store.js"></script>
+    <script type="text/javascript" src="assets/js/store.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
