@@ -4,28 +4,19 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ORVE - Lotes</title>
+    <title>ORVE - Luminares</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-        crossorigin="anonymous"></script>
-    <script type="text/javascript" src="assets/js/zoomple.js"></script>
-    <script type="text/javascript" src="assets/js/prods.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/store.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/zoomple.css" />
-    <script>
-        //Image zoom
-        $('.zoomple').zoomple({
-        offset: {
-        x: -150,
-        y: -150
-        },
-        zoomWidth: 300,
-        zoomHeight: 300,
-        roundedCorners: true
-        });
-    </script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="assets/js/prods.js"></script>
+    <script type="text/javascript" src="assets/js/elevatezoom.js"></script>
+
+
+
 </head>
 
 <body>
@@ -38,7 +29,11 @@
         <h3 class="orve-title">Selecciona tus lotes</h3>
         <div class="row">
             <div class="col-lg-7 col-md-6">
-                <a href="assets/images/image.jpg" class="zoomple"><img src="assets/images/image.jpg" alt="" /> </a>
+                <!--<a href="assets/images/image.jpg" class="zoomple">
+<img src="assets/images/image-small.jpg" alt /></a>-->
+
+
+                <img id="zoom_01" src="assets/images/image-small.jpg" data-zoom-image="assets/images/image-small_big.jpg" />
             </div>
             <div class="col-lg-5 col-md-6">
                 <label>Lote*</label>
@@ -195,6 +190,7 @@
             </ul>
         </div>
     </div>
+
     <script>
         $(document).ready(function () {
             //Dynamic option menu 
@@ -215,8 +211,16 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
-    <script>
 
+    <script>
+        $("#zoom_01").elevateZoom({
+            constrainType: "height",
+            constrainSize: 274,
+            zoomType: "lens",
+            containLensZoom: true,
+            cursor: 'pointer',
+            borderColour: "#03b42e"
+        });
     </script>
 
 </body>
