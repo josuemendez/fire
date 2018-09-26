@@ -6,8 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>ORVE - Checkout</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/store.css" />
 </head>
 
@@ -21,135 +23,135 @@
         <h3 class="orve-title">Datos de contrato</h3>
         <h2 class="orve-subtitle">Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit.</h2>
 
-        <form>
+        <form name="user_info">
             <div class="row sec">
                 <div class="col-md-6">
                     <label>Tipo de persona*</label>
-                    <select required>
+                    <select name="person" id="form_person" required>
                         <option value="none">Selecciona</option>
                         <option value="Fisica">Física</option>
-                        <option value="A2">Moral</option>
+                        <option value="Moral">Moral</option>
                     </select>
                 </div>
                 <div class="col-md-6">
                     <label>Nombre*</label>
                     <br>
-                    <input type="text" placeholder="xxxxxxxxxxxxx" required>
+                    <input type="text" name="name" id="form_name" placeholder="xxxxxxxxxxxxx" required>
                 </div>
             </div>
             <div class="row sec">
                 <div class="col-md-6">
                     <label>Apellido Paterno*</label>
                     <br>
-                    <input type="text" placeholder="xxxxxxxxxxxxx" required>
+                    <input type="text" name="lastname1" id="form_lastname1" placeholder="xxxxxxxxxxxxx" required>
                 </div>
                 <div class="col-md-6">
                     <label>Apellido Materno*</label>
                     <br>
-                    <input type="text" placeholder="xxxxxxxxxxxxx" required>
+                    <input type="text" name="lastname2" id="form_lastname2" placeholder="xxxxxxxxxxxxx" required>
                 </div>
             </div>
             <div class="row sec">
                 <div class="col-md-6">
                     <label>Email*</label>
                     <br>
-                    <input type="email" placeholder="xxxxxxxxxxxxx" required>
+                    <input type="email" name="email" id="form_email" placeholder="xxxxxxxxxxxxx" required>
                 </div>
                 <div class="col-md-6">
                     <label>Teléfono celular</label>
                     <br>
-                    <input type="number" placeholder="xxxxxxxxxxxxx">
+                    <input type="number" name="cell" id="form_cell" placeholder="xxxxxxxxxxxxx">
                 </div>
             </div>
             <div class="row border-top">
                 <div class="col-md-6">
                     <label>CURP*</label>
                     <br>
-                    <input type="text" placeholder="xxxxxxxxxxxxx" required>
+                    <input type="text" name="curp" id="form_curp" placeholder="xxxxxxxxxxxxx" required>
                 </div>
                 <div class="col-md-6">
                     <label>RFC*</label>
                     <br>
-                    <input type="text" placeholder="xxxxxxxxxxxxx" required>
+                    <input type="text" name="rfc" id="form_rfc" placeholder="xxxxxxxxxxxxx" required>
                 </div>
             </div>
             <div class="row sec">
                 <div class="col-md-6">
                     <label>Nacionalidad</label>
                     <br>
-                    <input type="text" placeholder="xxxxxxxxxxxxx">
+                    <input type="text" name="nat" id="form_nat" placeholder="xxxxxxxxxxxxx">
                 </div>
                 <div class="col-md-6">
                     <label>Ocupación*</label>
                     <br>
-                    <input type="text" placeholder="xxxxxxxxxxxxx" required>
+                    <input type="text" name="job" id="form_job" placeholder="xxxxxxxxxxxxx" required>
                 </div>
             </div>
             <div class="row sec">
                 <div class="col-md-6">
                     <label>Fecha de nacimiento</label>
                     <br>
-                    <input type="date" placeholder="xxxxxxxxxxxxx">
+                    <input type="date" name="birth" id="form_birth" placeholder="xxxxxxxxxxxxx">
                 </div>
                 <div class="col-md-6">
                     <label>Lugar de nacimiento</label>
                     <br>
-                    <input type="text" placeholder="xxxxxxxxxxxxx">
+                    <input type="text" name="bPlace" id="form_bPlace" placeholder="xxxxxxxxxxxxx">
                 </div>
             </div>
             <div class="row sec">
                 <div class="col-md-6">
                     <label>Estado civil</label>
                     <br>
-                    <input type="text" placeholder="xxxxxxxxxxxxx">
+                    <input type="text" name="civil" id="form_civil" placeholder="xxxxxxxxxxxxx">
                 </div>
                 <div class="col-md-6">
                     <label>Régimen conyugal</label>
                     <br>
-                    <input type="text" placeholder="xxxxxxxxxxxxx">
+                    <input type="text" name="reg" id="form_reg" placeholder="xxxxxxxxxxxxx">
                 </div>
             </div>
             <div class="row border-top">
                 <div class="col-md-6">
                     <label>Calle</label>
                     <br>
-                    <input type="text" placeholder="xxxxxxxxxxxxx">
+                    <input type="text" name="street" id="form_street" placeholder="xxxxxxxxxxxxx">
                 </div>
                 <div class="col-md-6">
                     <label>Número</label>
                     <br>
-                    <input type="text" placeholder="xxxxxxxxxxxxx">
+                    <input type="text" name="number" id="form_number" placeholder="xxxxxxxxxxxxx">
                 </div>
             </div>
             <div class="row sec">
                 <div class="col-md-6">
                     <label>Colonia</label>
                     <br>
-                    <input type="text" placeholder="xxxxxxxxxxxxx">
+                    <input type="text" name="col" id="form_col" placeholder="xxxxxxxxxxxxx">
                 </div>
                 <div class="col-md-6">
                     <label>Código postal</label>
                     <br>
-                    <input type="number" placeholder="xxxxxxxxxxxxx">
+                    <input type="number" name="zip" id="form_zip" placeholder="xxxxxxxxxxxxx">
                 </div>
             </div>
             <div class="row sec">
                 <div class="col-md-6">
                     <label>Localidad</label>
                     <br>
-                    <input type="text" placeholder="xxxxxxxxxxxxx">
+                    <input type="text" name="local" id="form_local" placeholder="xxxxxxxxxxxxx">
                 </div>
                 <div class="col-md-6">
                     <label>Estado</label>
                     <br>
-                    <input type="text" placeholder="xxxxxxxxxxxxx">
+                    <input type="text" name="state" id="form_state" placeholder="xxxxxxxxxxxxx">
                 </div>
             </div>
             <div class="row sec">
                 <div class="col-md-6">
                     <label>País</label>
                     <br>
-                    <input type="text" placeholder="xxxxxxxxxxxxx">
+                    <input type="text" name="country" id="form_country" placeholder="xxxxxxxxxxxxx">
                 </div>
             </div>
         </form>
@@ -170,8 +172,10 @@
         <div class="ob-container">
             <ul class="rules">
                 <li>
-                    <b>Saldo 20 días orve:</b> Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
-                    Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing
+                    <b>Saldo 20 días orve:</b> Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
+                    cubilia
+                    Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur
+                    adipiscing
                     elit. Vivamus.
                 </li>
             </ul>
@@ -180,8 +184,10 @@
 
 
     <script type="text/javascript" src="assets/js/store.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

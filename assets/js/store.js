@@ -338,45 +338,52 @@ function checkoutPayment() {
     var payPlan = shoppingCart.loadDeal();
     var cartArray = shoppingCart.listCart();
     var cartStatus = shoppingCart.countCart();
-    var account = "koller16-facilitator@gmail.com";//email del la empresa
+    var account = "koller16-facilitator@gmail.com"; //email del la empresa
     var formActn = "https://www.sandbox.paypal.com/cgi-bin/webscr";
-    var formRtn = "https://www.orangebits.com.mx/demo/orve/thanks.html";//a donde va a regresar despues del pago
+    var formRtn = "https://www.orangebits.com.mx/demo/orve/thanks.html"; //a donde va a regresar despues del pago
     var fee = 500;
     $(document).ready(function () {
         if (cartStatus != 0) {
-            if ((payPlan == "Transferencia") || (payPlan == "Credito")) {
-                //Tranferencia y credito
+            if (payPlan == "Transferencia") {
+                //Contado pago por transferencia
                 var payForm = "<form action=" + formActn + " method=" + 'post' + "> <input type = " + 'hidden' + " name = " + 'cmd' + " value = " + '_cart' + " ><input type = " + 'hidden' + " name = " + 'upload' + " value = " + '1' + " ><input type = " + 'hidden' + " name = " + 'business' + " value = " + account + "><input type = " + 'hidden' + " name = " + 'currency_code' + " value = " + 'MXN' + "><input type = " + 'hidden' + " name = " + 'no_shipping' + " value = " + '1' + "><input type = " + 'hidden' + " name = " + 'return' + " value = " + formRtn + ">";
                 for (var i in cartArray) {
                     //var payTotal =+ cartArray[i].price;
                     var y = +i + 1;
-                    payForm += "<input type=" + 'hidden' + " name=" + 'item_name_' + y + " value=" + 'Lote-' + cartArray[i].lot + "><input type=" + 'hidden' + " name=" + 'amount_' + y + " value=" + cartArray[i].first_pay + ">";
+                    payForm += "<input type=" + 'hidden' + " name=" + 'item_name_' + y + " value=" + 'Lote-' + cartArray[i].lot + "><input type=" + 'hidden' + " name=" + 'amount_' + y + " value=" + cartArray[i].list_price + ">";
+                    y = +i + 1;
+                    payForm += "<input type=" + 'hidden' + " name=" + 'item_name_' + y + " value=" + 'Escritura Lote-' + cartArray[i].lot + "><input type=" + 'hidden' + " name=" + 'amount_' + y + " value=" + cartArray[i].deed + ">";
                 }
                 payForm += "<button type=" + 'submit' + " id=" + 'payment' + ">Pagar</button></form>";
                 $("#pay-form").html(payForm);
 
-
             } else if (payPlan == "Meses sin intereses Orve") {
-                //Meses sin intereses
+                //Meses sin intereses ORVE
                 var payForm = "<form action=" + formActn + " method=" + 'post' + "> <input type = " + 'hidden' + " name = " + 'cmd' + " value = " + '_cart' + " ><input type = " + 'hidden' + " name = " + 'upload' + " value = " + '1' + " ><input type = " + 'hidden' + " name = " + 'business' + " value = " + account + "><input type = " + 'hidden' + " name = " + 'currency_code' + " value = " + 'MXN' + "><input type = " + 'hidden' + " name = " + 'no_shipping' + " value = " + '1' + "><input type = " + 'hidden' + " name = " + 'return' + " value = " + formRtn + ">";
                 for (var i in cartArray) {
                     //var payTotal =+ cartArray[i].price;
                     var y = +i + 1;
-                    payForm += "<input type=" + 'hidden' + " name=" + 'item_name_' + y + " value=" + 'Lote-' + cartArray[i].lot + "><input type=" + 'hidden' + " name=" + 'amount_' + y + " value=" + cartArray[i].first_pay + ">";
-                    y = +i + 1;
-                    payForm += "<input type=" + 'hidden' + " name=" + 'item_name_' + y + " value=" + 'Escritura Lote-' + cartArray[i].lot + "><input type=" + 'hidden' + " name=" + 'amount_' + y + " value=" + cartArray[i].deed + ">";
+                    payForm += "<input type=" + 'hidden' + " name=" + 'item_name_' + y + " value=" + 'Anticipo Lote-' + cartArray[i].lot + "><input type=" + 'hidden' + " name=" + 'amount_' + y + " value=" + cartArray[i].first_pay + ">";
                 }
                 y = y + 1;
                 payForm += "<input type=" + 'hidden' + " name=" + 'item_name_' + y + " value=" + 'Cuota de Apertura' + "><input type=" + 'hidden' + " name=" + 'amount_' + y + " value=" + fee + ">";
                 payForm += "<button type=" + 'submit' + " id=" + 'payment' + ">Pagar</button></form>";
                 $("#pay-form").html(payForm);
 
+            } else if (payPlan == "Credito") {
+                //Contado tarjeta de credito
+                var payForm = "<form action=" + formActn + " method=" + 'post' + "> <input type = " + 'hidden' + " name = " + 'cmd' + " value = " + '_cart' + " ><input type = " + 'hidden' + " name = " + 'upload' + " value = " + '1' + " ><input type = " + 'hidden' + " name = " + 'business' + " value = " + account + "><input type = " + 'hidden' + " name = " + 'currency_code' + " value = " + 'MXN' + "><input type = " + 'hidden' + " name = " + 'no_shipping' + " value = " + '1' + "><input type = " + 'hidden' + " name = " + 'return' + " value = " + formRtn + ">";
+                for (var i in cartArray) {
+                    //var payTotal =+ cartArray[i].price;
+                    var y = +i + 1;
+                    payForm += "<input type=" + 'hidden' + " name=" + 'item_name_' + y + " value=" + 'Lote-' + cartArray[i].lot + "><input type=" + 'hidden' + " name=" + 'amount_' + y + " value=" + cartArray[i].list_price + ">";
+                    y = +i + 1;
+                    payForm += "<input type=" + 'hidden' + " name=" + 'item_name_' + y + " value=" + 'Escritura Lote-' + cartArray[i].lot + "><input type=" + 'hidden' + " name=" + 'amount_' + y + " value=" + cartArray[i].deed + ">";
+                }
+                payForm += "<button type=" + 'submit' + " id=" + 'payment' + ">Pagar</button></form>";
+                $("#pay-form").html(payForm);
 
-
-
-
-
-            } else {
+            } else if (payPlan == "MSI Credito") {
                 //MSI Credito
                 var payForm = "<form action=" + formActn + " method=" + 'post' + "> <input type = " + 'hidden' + " name = " + 'cmd' + " value = " + '_cart' + " ><input type = " + 'hidden' + " name = " + 'upload' + " value = " + '1' + " ><input type = " + 'hidden' + " name = " + 'business' + " value = " + account + "><input type = " + 'hidden' + " name = " + 'currency_code' + " value = " + 'MXN' + "><input type = " + 'hidden' + " name = " + 'no_shipping' + " value = " + '1' + "><input type = " + 'hidden' + " name = " + 'return' + " value = " + formRtn + ">";
                 for (var i in cartArray) {
@@ -389,18 +396,6 @@ function checkoutPayment() {
                 payForm += "<button type=" + 'submit' + " id=" + 'payment' + ">Pagar</button></form>";
                 $("#pay-form").html(payForm);
             };
-
-            var payForm = "<form action=" + formActn + " method=" + 'post' + "> <input type = " + 'hidden' + " name = " + 'cmd' + " value = " + '_cart' + " ><input type = " + 'hidden' + " name = " + 'upload' + " value = " + '1' + " ><input type = " + 'hidden' + " name = " + 'business' + " value = " + account + "><input type = " + 'hidden' + " name = " + 'currency_code' + " value = " + 'MXN' + "><input type = " + 'hidden' + " name = " + 'no_shipping' + " value = " + '1' + "><input type = " + 'hidden' + " name = " + 'return' + " value = " + formRtn + ">";
-            for (var i in cartArray) {
-                //var payTotal =+ cartArray[i].price;
-                var y = +i + 1;
-                payForm += "<input type=" + 'hidden' + " name=" + 'item_name_' + y + " value=" + 'Lote-' + cartArray[i].lot + "><input type=" + 'hidden' + " name=" + 'amount_' + y + " value=" + cartArray[i].first_pay + ">";
-            }
-            payForm += "<button type=" + 'submit' + " id=" + 'payment' + ">Pagar</button></form>";
-            $("#pay-form").html(payForm);
-
-
-
 
         } else {
             var payForm = "aqui va un boton para regresar";
@@ -565,12 +560,12 @@ shoppingCart.totalCartOne = function () { //-> regresa el total de costo
         totalListPriceOne += this.cart[i].list_price;
         totalMainPriceOne += this.cart[i].main_price;
         totalDeedOne += this.cart[i].deed_alt;
+        totalFirstPayOne += this.cart[i].first_pay;
     }
 
     var feeOne = 0;
     var totalSaveOne = totalListPriceOne - totalMainPriceOne;
     var totalPayOne = totalMainPriceOne + totalDeedOne + feeOne;
-    totalFirstPayOne = totalPayOne;
     var msi12One = 0;
     //var msi24One = 0;
 
@@ -795,6 +790,11 @@ shoppingCart.clearDeal = function () {
     this.saveDeal();
 };
 //deal end
+
+shoppingCart.getFormData = function () {
+    //<input type="text" name="name" id="uniqueID" value="value" />
+    var nameValue = document.getElementById("uniqueID").value;
+};
 
 //shoppingCart.listProducts();
 
