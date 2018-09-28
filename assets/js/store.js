@@ -234,34 +234,6 @@ function loadPayTableOne() {
 //*********** end fill payment table by finance option *****************
 
 // checkout summary //
-/*function cartSummary() {
-    var payPlan = shoppingCart.loadDeal();
-    var cartArray = shoppingCart.listCart();
-    var cartStatus = shoppingCart.countCart();
-    var cartTitle = "<h2 class=" + 'orve-title' + ">Resumen del pedido</h2>";
-    $(document).ready(function () {
-        if (cartStatus != 0) {
-            var payTotal = 0;
-            var output = "<table class=" + 'table' + "><tbody><tr><th scope=" + 'col' + " class=" + 'text-left' + ">Producto</th><th scope=" + 'col' + ">Descripción</th><th scope=" + 'col' + "></th></tr >";
-            for (var i in cartArray) {
-                var payTotal = payTotal + cartArray[i].first_pay;
-                output += "<tr><td scope=" + 'row' + " class=" + 'text-left' + ">Lote " +
-                    cartArray[i].lot +
-                    "</td><td>Anticipo $" + cartArray[i].first_pay +
-                    "</td><td><a class='delete-item' data-lot='" + cartArray[i].lot + "'>Eliminar</a></td></tr>";
-
-            }
-            output += " <tr><td class=" + 'text-left' + ">Plan de Pago</td><td>" + payPlan + "</td><td></td></tr> <tr><td class=" + 'text-left' + "><label>Total a Pagar</label></td><td><label>$" + payTotal + ".00</label></td><td></td></tr>  </tbody></table>";
-            $("#cart-summary").html(cartTitle + output);
-            $("#payment").prop("disabled", false);
-        } else {
-            var output = "";
-            $("#cart-summary").html(output);
-            $("#payment").prop("disabled", true);
-        };
-    });
-};*/
-//Transferencia, Credito, Meses sin intereses Orve, MSI Credito
 function cartSummary() {
     var payPlan = shoppingCart.loadDeal();
     var cartArray = shoppingCart.listCart();
@@ -445,6 +417,7 @@ var shoppingCart = {};
 shoppingCart.cart = [];
 shoppingCart.prods = [];
 shoppingCart.holdDeal = [];
+shoppingCart.orveForm = [];
 
 shoppingCart.Item = function (id, lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, deed_alt, count) {
     this.id = id
@@ -686,7 +659,7 @@ shoppingCart.totalCartMsi = function () { //-> regresa el total de costo
 
 
 
-shoppingCart.Prod = function (id, lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt) {
+/* shoppingCart.Prod = function (id, lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt) {
     this.id = id
     this.lot = lot
     this.width = width
@@ -701,7 +674,7 @@ shoppingCart.Prod = function (id, lot, width, long, m2, first_pay, main_price_m2
     this.main_deed_alt = main_deed_alt
     this.list_deed = list_deed
     this.list_deed_alt = list_deed_alt
-};
+}; */
 
 shoppingCart.listCart = function () {
     var cartCopy = [];
@@ -776,24 +749,40 @@ shoppingCart.loadDeal = function () {
     return this.selectedDeal;
 };
 
-
-/*shoppingCart.dealCalc = function () {
-    if (this.holdDeal[0].deal === "Financiamiento Orve") {
-        console.log("soy: Financiamiento Orve")
-    };
-    console.log("soy: otra cosa")
-};*/
-
-
 shoppingCart.clearDeal = function () {
     this.holdDeal = [];
     this.saveDeal();
 };
 //deal end
+//form storage start
+shoppingCart.Form = function (form_person, lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, deed_alt, count) {
+    this.id = id
+    this.lot = lot
+    this.width = width
+    this.long = long
+    this.m2 = m2
+    this.first_pay = first_pay
+    this.main_price_m2 = main_price_m2
+    this.main_price = main_price
+    this.list_price_m2 = list_price_m2
+    this.list_price = list_price
+    this.main_deed = main_deed
+    this.main_deed_alt = main_deed_alt
+    this.list_deed = list_deed
+    this.list_deed_alt = list_deed_alt
+    this.deed = deed
+    this.deed_alt = deed_alt
+    this.count = count
+};
+
+//crea la base de datos para guardar el formulario
+shoppingCart.saveForm = function () {
+    localStorage.setItem("orveForm", JSON.stringify(this.storeForm));
+};
 
 shoppingCart.getFormData = function () {
     //<input type="text" name="name" id="uniqueID" value="value" />
-    var nameValue = document.getElementById("uniqueID").value;
+    var nameValue = document.getElementById("form_name").value;
 };
 
 //shoppingCart.listProducts();
