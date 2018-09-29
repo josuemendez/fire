@@ -39,6 +39,40 @@ $(".checkout-btn").click(function (event) {
     window.location.href = "checkout.html";
 })
 
+$(document).ready(function () {
+    $('#user_info input').change(function () {
+        var form_person = $("#form_person option:selected").text();
+        var form_name = $('#form_name').val();
+        var form_lastname1 = $('#form_lastname1').val();
+        var form_lastname2 = $('#form_lastname2').val();
+        var form_email = $('#form_email').val();
+        var form_cell = $('#form_cell').val();
+        var form_curp = $('#form_curp').val();
+        var form_rfc = $('#form_rfc').val();
+        var form_nat = $('#form_nat').val();
+        var form_job = $('#form_job').val();
+        var form_birth = $('#form_birth').val();
+        var form_bPlace = $('#form_bPlace').val();
+        var form_civil = $('#form_civil').val();
+        var form_reg = $('#form_reg').val();
+        var form_street = $('#form_street').val();
+        var form_number = $('#form_number').val();
+        var form_col = $('#form_col').val();
+        var form_zip = $('#form_zip').val();
+        var form_local = $('#form_local').val();
+        var form_state = $('#form_state').val();
+        var form_country = $('#form_country').val();
+        shoppingCart.addForm(
+            form_person, form_name, form_lastname1,
+            form_lastname2, form_email, form_cell,
+            form_curp, form_rfc, form_nat,
+            form_job, form_birth, form_bPlace,
+            form_civil, form_reg, form_street,
+            form_number, form_col, form_zip,
+            form_local, form_state, form_country);
+    });
+});
+
 //creates the lot shopping cart
 function displayCart() {
     var cartArray = shoppingCart.listCart();
@@ -417,7 +451,7 @@ var shoppingCart = {};
 shoppingCart.cart = [];
 shoppingCart.prods = [];
 shoppingCart.holdDeal = [];
-shoppingCart.orveForm = [];
+shoppingCart.holdForm = [];
 
 shoppingCart.Item = function (id, lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, deed_alt, count) {
     this.id = id
@@ -755,29 +789,77 @@ shoppingCart.clearDeal = function () {
 };
 //deal end
 //form storage start
-shoppingCart.Form = function (form_person, lot, width, long, m2, first_pay, main_price_m2, main_price, list_price_m2, list_price, main_deed, main_deed_alt, list_deed, list_deed_alt, deed, deed_alt, count) {
-    this.id = id
-    this.lot = lot
-    this.width = width
-    this.long = long
-    this.m2 = m2
-    this.first_pay = first_pay
-    this.main_price_m2 = main_price_m2
-    this.main_price = main_price
-    this.list_price_m2 = list_price_m2
-    this.list_price = list_price
-    this.main_deed = main_deed
-    this.main_deed_alt = main_deed_alt
-    this.list_deed = list_deed
-    this.list_deed_alt = list_deed_alt
-    this.deed = deed
-    this.deed_alt = deed_alt
-    this.count = count
+shoppingCart.Form = function (
+    form_person, form_name, form_lastname1,
+    form_lastname2, form_email, form_cell,
+    form_curp, form_rfc, form_nat,
+    form_job, form_birth, form_bPlace,
+    form_civil, form_reg, form_street,
+    form_number, form_col, form_zip,
+    form_local, form_state, form_country) {
+    this.form_person = form_person
+    this.form_name = form_name
+    this.form_lastname1 = form_lastname1
+    this.form_lastname2 = form_lastname2
+    this.form_email = form_email
+    this.form_cell = form_cell
+    this.form_curp = form_curp
+    this.form_rfc = form_rfc
+    this.form_nat = form_nat
+    this.form_job = form_job
+    this.form_birth = form_birth
+    this.form_bPlace = form_bPlace
+    this.form_civil = form_civil
+    this.form_reg = form_reg
+    this.form_street = form_street
+    this.form_number = form_number
+    this.form_col = form_col
+    this.form_zip = form_zip
+    this.form_local = form_local
+    this.form_state = form_state
+    this.form_country = form_country
+
+};
+
+//guarda la informacion del cliente
+shoppingCart.addForm = function (
+    form_person, form_name, form_lastname1,
+    form_lastname2, form_email, form_cell,
+    form_curp, form_rfc, form_nat,
+    form_job, form_birth, form_bPlace,
+    form_civil, form_reg, form_street,
+    form_number, form_col, form_zip,
+    form_local, form_state, form_country) {
+    this.clearDeal();
+    console.log("entre al add form");
+    console.log(form_name);
+    var form = new this.Form(
+        form_person, form_name, form_lastname1,
+        form_lastname2, form_email, form_cell,
+        form_curp, form_rfc, form_nat,
+        form_job, form_birth, form_bPlace,
+        form_civil, form_reg, form_street,
+        form_number, form_col, form_zip,
+        form_local, form_state, form_country);
+    this.holdForm.push(
+        form_person, form_name, form_lastname1,
+        form_lastname2, form_email, form_cell,
+        form_curp, form_rfc, form_nat,
+        form_job, form_birth, form_bPlace,
+        form_civil, form_reg, form_street,
+        form_number, form_col, form_zip,
+        form_local, form_state, form_country);
+    this.saveForm();
+};
+
+shoppingCart.clearForm = function () {
+    this.holdForm = [];
+    this.saveForm();
 };
 
 //crea la base de datos para guardar el formulario
 shoppingCart.saveForm = function () {
-    localStorage.setItem("orveForm", JSON.stringify(this.storeForm));
+    localStorage.setItem("orveForm", JSON.stringify(this.holdForm));
 };
 
 shoppingCart.getFormData = function () {
